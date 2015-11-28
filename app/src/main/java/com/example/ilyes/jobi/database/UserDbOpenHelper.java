@@ -18,15 +18,15 @@ public class UserDbOpenHelper extends SQLiteOpenHelper {
 
     private static final String CREATE_TABLE_WORKER =
             "CREATE TABLE " + WorkerEntry.TABLE + " (" +
-            WorkerEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-            WorkerEntry.COLUMN_NAME + " TEXT ," +
-            WorkerEntry.COLUMN_EMAIL + " TEXT ," +
-            WorkerEntry.COLUMN_PASSWORD + " TEXT ," +
-            WorkerEntry.COLUMN_NUMERO_TEL + " TEXT ," +
-            WorkerEntry.COLUMN_ADDRESS + " TEXT ," +
-            WorkerEntry.COLUMN_EXP_YEAR + " INTEGER NOT NULL ," +
-            WorkerEntry.COLUMN_BIRTH_DATE + " TEXT ," +
-            WorkerEntry.COLUMN_FUNCTION + " TEXT" +
+                    WorkerEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    WorkerEntry.COLUMN_NAME + " TEXT ," +
+                    WorkerEntry.COLUMN_EMAIL + " TEXT ," +
+                    WorkerEntry.COLUMN_PASSWORD + " TEXT ," +
+                    WorkerEntry.COLUMN_NUMERO_TEL + " TEXT ," +
+                    WorkerEntry.COLUMN_ADDRESS + " TEXT ," +
+                    WorkerEntry.COLUMN_EXP_YEAR + " INTEGER NOT NULL ," +
+                    WorkerEntry.COLUMN_BIRTH_DATE + " TEXT ," +
+                    WorkerEntry.COLUMN_FUNCTION + " TEXT" +
                     ");";
 
     private static final String CREATE_TABLE_CLIENT =

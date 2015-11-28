@@ -8,12 +8,16 @@ import android.util.Log;
 import com.example.ilyes.jobi.model.Worker;
 import com.example.ilyes.jobi.other.Util;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by ilyes on 28/11/15.
  */
 public class WorkerDataSource extends UserDataSource {
 
     String[] allColumns = {
+            WorkerEntry._ID,
             WorkerEntry.COLUMN_NAME,
             WorkerEntry.COLUMN_EMAIL,
             WorkerEntry.COLUMN_PASSWORD,
@@ -74,9 +78,44 @@ public class WorkerDataSource extends UserDataSource {
             worker.setDateTimeFromString(cursor.getString(cursor.getColumnIndex(WorkerEntry.COLUMN_BIRTH_DATE)));
             worker.setFunction(cursor.getString(cursor.getColumnIndex(WorkerEntry.COLUMN_FUNCTION)));
 
-
         }
+
+        assert cursor != null;
+        cursor.close();
 
         return worker;
     }
+
+    public List<Worker> getAll() {
+        List<Worker> workers = new ArrayList<>();
+
+
+
+        Cursor cursor = database.query(WorkerEntry.TABLE, allColumns, null, null, null, null, null);
+
+
+        if (cursor.getCount() > 0) {
+
+            while (cursor.moveToNext()) {
+
+                Worker worker = new Worker();
+
+                worker.setId(cursor.getLong(cursor.getColumnIndex(WorkerEntry._ID)));
+                worker.setName(cursor.getString(cursor.getColumnIndex(WorkerEntry.COLUMN_NAME)));
+                worker.setEmail(cursor.getString(cursor.getColumnIndex(WorkerEntry.COLUMN_EMAIL)));
+                worker.setPassword(cursor.getString(cursor.getColumnIndex(WorkerEntry.COLUMN_PASSWORD)));
+                worker.setNumeroTel(cursor.getString(cursor.getColumnIndex(WorkerEntry.COLUMN_NUMERO_TEL)));
+                worker.setAddressFromString(cursor.getString(cursor.getColumnIndex(WorkerEntry.COLUMN_ADDRESS)));
+                worker.setExpYears(cursor.getInt(cursor.getColumnIndex(WorkerEntry.COLUMN_EXP_YEAR)));
+                worker.setDateTimeFromString(cursor.getString(cursor.getColumnIndex(WorkerEntry.COLUMN_BIRTH_DATE)));
+                worker.setFunction(cursor.getString(cursor.getColumnIndex(WorkerEntry.COLUMN_FUNCTION)));
+
+
+                workers.add(worker);
+            }
+        }
+
+        return workers;
+    }
+
 }

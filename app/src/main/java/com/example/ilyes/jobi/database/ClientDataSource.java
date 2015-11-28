@@ -8,17 +8,21 @@ import android.util.Log;
 import com.example.ilyes.jobi.model.Client;
 import com.example.ilyes.jobi.other.Util;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by ilyes on 28/11/15.
  */
 public class ClientDataSource extends UserDataSource{
 
     private String[] allColumns = {
-            WorkerEntry.COLUMN_NAME,
-            WorkerEntry.COLUMN_EMAIL,
-            WorkerEntry.COLUMN_PASSWORD,
-            WorkerEntry.COLUMN_NUMERO_TEL,
-            WorkerEntry.COLUMN_ADDRESS
+            ClientEntry._ID,
+            ClientEntry.COLUMN_NAME,
+            ClientEntry.COLUMN_EMAIL,
+            ClientEntry.COLUMN_PASSWORD,
+            ClientEntry.COLUMN_NUMERO_TEL,
+            ClientEntry.COLUMN_ADDRESS
     };
 
     public ClientDataSource(Context context) {
@@ -30,11 +34,11 @@ public class ClientDataSource extends UserDataSource{
 
         ContentValues values = new ContentValues();
 
-        values.put(WorkerEntry.COLUMN_NAME, client.getName());
-        values.put(WorkerEntry.COLUMN_EMAIL, client.getEmail());
-        values.put(WorkerEntry.COLUMN_PASSWORD, client.getPassword());
-        values.put(WorkerEntry.COLUMN_NUMERO_TEL, client.getNumeroTel());
-        values.put(WorkerEntry.COLUMN_ADDRESS, client.getAddress().getAddressAsString());
+        values.put(ClientEntry.COLUMN_NAME, client.getName());
+        values.put(ClientEntry.COLUMN_EMAIL, client.getEmail());
+        values.put(ClientEntry.COLUMN_PASSWORD, client.getPassword());
+        values.put(ClientEntry.COLUMN_NUMERO_TEL, client.getNumeroTel());
+        values.put(ClientEntry.COLUMN_ADDRESS, client.getAddress().getAddressAsString());
         long id = database.insert(ClientEntry.TABLE, null, values);
         client.setId(id);
 
@@ -60,14 +64,42 @@ public class ClientDataSource extends UserDataSource{
             cursor.moveToFirst();
 
             client.setId(id);
-            client.setName(cursor.getString(cursor.getColumnIndex(WorkerEntry.COLUMN_NAME)));
-            client.setEmail(cursor.getString(cursor.getColumnIndex(WorkerEntry.COLUMN_EMAIL)));
-            client.setPassword(cursor.getString(cursor.getColumnIndex(WorkerEntry.COLUMN_PASSWORD)));
-            client.setNumeroTel(cursor.getString(cursor.getColumnIndex(WorkerEntry.COLUMN_NUMERO_TEL)));
-            client.setAddressFromString(cursor.getString(cursor.getColumnIndex(WorkerEntry.COLUMN_ADDRESS)));
+            client.setName(cursor.getString(cursor.getColumnIndex(ClientEntry.COLUMN_NAME)));
+            client.setEmail(cursor.getString(cursor.getColumnIndex(ClientEntry.COLUMN_EMAIL)));
+            client.setPassword(cursor.getString(cursor.getColumnIndex(ClientEntry.COLUMN_PASSWORD)));
+            client.setNumeroTel(cursor.getString(cursor.getColumnIndex(ClientEntry.COLUMN_NUMERO_TEL)));
+            client.setAddressFromString(cursor.getString(cursor.getColumnIndex(ClientEntry.COLUMN_ADDRESS)));
         }
 
         return client;
+    }
+
+
+    public List<Client> getAll() {
+        List<Client> clients = new ArrayList<>();
+
+
+
+        Cursor cursor = database.query(ClientEntry.TABLE, allColumns, null, null, null, null, null);
+
+
+        if (cursor.getCount() > 0) {
+
+            while (cursor.moveToNext()) {
+
+                Client client = new Client();
+
+                client.setId(cursor.getLong(cursor.getColumnIndex(ClientEntry._ID)));
+                client.setName(cursor.getString(cursor.getColumnIndex(ClientEntry.COLUMN_NAME)));
+                client.setEmail(cursor.getString(cursor.getColumnIndex(ClientEntry.COLUMN_EMAIL)));
+                client.setPassword(cursor.getString(cursor.getColumnIndex(ClientEntry.COLUMN_PASSWORD)));
+                client.setNumeroTel(cursor.getString(cursor.getColumnIndex(ClientEntry.COLUMN_NUMERO_TEL)));
+                client.setAddressFromString(cursor.getString(cursor.getColumnIndex(ClientEntry.COLUMN_ADDRESS)));
+                clients.add(client);
+            }
+        }
+
+        return clients;
     }
 
 }

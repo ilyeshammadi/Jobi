@@ -9,11 +9,18 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.ilyes.jobi.R;
+import com.example.ilyes.jobi.database.WorkerDataSource;
+import com.example.ilyes.jobi.model.Worker;
+import com.example.ilyes.jobi.other.Util;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -56,16 +63,18 @@ public class MainActivity extends AppCompatActivity
 //        dataSource.close();
 //
 //
-//        WorkerDataSource dataSource = new WorkerDataSource(this);
-//        dataSource.open();
-//
-//        Worker worker = dataSource.get(1);
-//
-//        Log.v(Util.LOG_TAG, "Before update : " + worker.toString());
-//
-//        worker.setName("Batman");
-//        Log.v(Util.LOG_TAG, "After update : " + worker.toString());
-//        dataSource.close();
+        WorkerDataSource dataSource = new WorkerDataSource(this);
+        dataSource.open();
+
+        List<Worker> workers = dataSource.getAll();
+        for (Worker worker : workers) {
+            Log.v(Util.LOG_TAG, worker.toString());
+        }
+
+
+        Log.v(Util.LOG_TAG, "result : " + dataSource.isUserExist("'email@hotmail.com'", "'12345689'"));
+        Toast.makeText(MainActivity.this, "" + dataSource.isUserExist("'email@hotmail.co'", "'12345689'"), Toast.LENGTH_SHORT).show();
+        dataSource.close();
 
 
     }
@@ -155,4 +164,7 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
+
 }

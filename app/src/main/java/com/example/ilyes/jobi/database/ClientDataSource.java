@@ -122,4 +122,21 @@ public class ClientDataSource extends UserDataSource{
         int result = database.delete(ClientEntry.TABLE, ClientEntry._ID + " = " + id, null);
         Log.v(Util.LOG_TAG, "delete with " + result);
     }
+
+
+
+    public boolean isUserExist(String email, String password) {
+        String query = "SELECT * FROM " + ClientEntry.TABLE +
+                " WHERE " + ClientEntry.COLUMN_EMAIL + "=" + email+
+                " AND " + ClientEntry.COLUMN_PASSWORD + "=" + password;
+        Cursor cursor = database.rawQuery(query, null);
+
+        if (cursor.getCount() > 0) {
+            cursor.close();
+            return true;
+        }
+        cursor.close();
+        return false;
+    }
+
 }

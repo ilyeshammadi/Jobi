@@ -122,7 +122,7 @@ public class WorkerDataSource extends UserDataSource {
                 workers.add(worker);
             }
         }
-
+        cursor.close();
         return workers;
     }
 
@@ -138,6 +138,22 @@ public class WorkerDataSource extends UserDataSource {
     public void delete(long id) {
         int result = database.delete(WorkerEntry.TABLE, WorkerEntry._ID + " = " + id, null);
         Log.v(Util.LOG_TAG, "delete with " + result);
+    }
+
+
+
+    public boolean isUserExist(String email, String password) {
+        String query = "SELECT * FROM " + WorkerEntry.TABLE +
+                " WHERE " + WorkerEntry.COLUMN_EMAIL + "=" + email+
+                " AND " + WorkerEntry.COLUMN_PASSWORD + "=" + password;
+        Cursor cursor = database.rawQuery(query, null);
+
+        if (cursor.getCount() > 0) {
+            cursor.close();
+            return true;
+        }
+        cursor.close();
+        return false;
     }
 
 }

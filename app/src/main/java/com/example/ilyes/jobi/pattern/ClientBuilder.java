@@ -4,11 +4,17 @@ import com.example.ilyes.jobi.model.Address;
 import com.example.ilyes.jobi.model.Client;
 
 public class ClientBuilder {
+    private long id;
     private String name;
     private String email;
     private String password;
     private String numeroTel;
     private Address address;
+
+    public ClientBuilder setId(long id) {
+        this.id = id;
+        return this;
+    }
 
     public ClientBuilder setName(String name) {
         this.name = name;
@@ -35,7 +41,7 @@ public class ClientBuilder {
         return this;
     }
 
-    public Client createClient() {
-        return new Client(name, email, password, numeroTel, address);
+    public Client build() {
+        return new Client(id, name, email, password, numeroTel, address);
     }
 }

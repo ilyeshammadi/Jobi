@@ -32,8 +32,6 @@ public class MainActivity extends AppCompatActivity
         // Setup the Navigation Drawer
         setupNavigation(toolbar);
 
-        
-
     }
 
     private void setupNavigation(Toolbar toolbar) {

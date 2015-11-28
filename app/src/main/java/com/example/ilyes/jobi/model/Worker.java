@@ -11,8 +11,9 @@ public class Worker extends User {
     private DateTime birthDate;
     private String function;
 
-    public Worker(String name, String email, String password, String numeroTel, Address address, int expYears, DateTime birthDate, String function) {
-        super(name, email, password, numeroTel, address);
+
+    public Worker(long id, String name, String email, String password, String numeroTel, Address address, int expYears, DateTime birthDate, String function) {
+        super(id, name, email, password, numeroTel, address);
         this.expYears = expYears;
         this.birthDate = birthDate;
         this.function = function;

@@ -5,7 +5,8 @@ package com.example.ilyes.jobi.model;
  */
 public class Client  extends User{
 
-    public Client(String name, String email, String password, String numeroTel, Address address) {
-        super(name, email, password, numeroTel, address);
+
+    public Client(long id, String name, String email, String password, String numeroTel, Address address) {
+        super(id, name, email, password, numeroTel, address);
     }
 }

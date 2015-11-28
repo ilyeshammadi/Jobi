@@ -6,6 +6,7 @@ import com.example.ilyes.jobi.model.Worker;
 import org.joda.time.DateTime;
 
 public class WorkerBuilder {
+    private long id;
     private String name;
     private String email;
     private String password;
@@ -14,6 +15,11 @@ public class WorkerBuilder {
     private int expYears;
     private DateTime birthDate;
     private String function;
+
+    public WorkerBuilder setId(long id) {
+        this.id = id;
+        return this;
+    }
 
     public WorkerBuilder setName(String name) {
         this.name = name;
@@ -55,7 +61,7 @@ public class WorkerBuilder {
         return this;
     }
 
-    public Worker createWorker() {
-        return new Worker(name, email, password, numeroTel, address, expYears, birthDate, function);
+    public Worker build() {
+        return new Worker(id, name, email, password, numeroTel, address, expYears, birthDate, function);
     }
 }

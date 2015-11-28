@@ -1,0 +1,63 @@
+package com.example.ilyes.jobi.model;
+
+/**
+ * Created by ilyes on 28/11/15.
+ */
+public class User {
+
+    private String name;
+    private String email;
+    private String password;
+    private String numeroTel;
+    private Address address;
+
+
+    public User(String name, String email, String password, String numeroTel, Address address) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.numeroTel = numeroTel;
+        this.address = address;
+    }
+
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getNumeroTel() {
+        return numeroTel;
+    }
+
+    public void setNumeroTel(String numeroTel) {
+        this.numeroTel = numeroTel;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+}

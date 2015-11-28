@@ -31,7 +31,7 @@ public class ClientDataSource extends UserDataSource{
     }
 
 
-    public void insert(Client client) {
+    public void create(Client client) {
 
         ContentValues values = getContentValues(client);
         long id = database.insert(ClientEntry.TABLE, null, values);
@@ -53,7 +53,7 @@ public class ClientDataSource extends UserDataSource{
     }
 
 
-    public Client get(long id) {
+    public Client read(long id) {
         Client client = new Client();
 
         Cursor cursor = database.query(
@@ -82,7 +82,7 @@ public class ClientDataSource extends UserDataSource{
     }
 
 
-    public List<Client> getAll() {
+    public List<Client> readAll() {
         List<Client> clients = new ArrayList<>();
 
 

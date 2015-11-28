@@ -34,7 +34,8 @@ public class WorkerDataSource extends UserDataSource {
         super(context);
     }
 
-    public void insert(Worker worker) {
+
+    public void create(Worker worker) {
 
         ContentValues values = getContentValues(worker);
 
@@ -59,7 +60,7 @@ public class WorkerDataSource extends UserDataSource {
         return values;
     }
 
-    public Worker get(long id) {
+    public Worker read(long id) {
         Worker worker = new Worker();
 
         Cursor cursor = database.query(
@@ -94,7 +95,7 @@ public class WorkerDataSource extends UserDataSource {
         return worker;
     }
 
-    public List<Worker> getAll() {
+    public List<Worker> readAll() {
         List<Worker> workers = new ArrayList<>();
 
 

@@ -9,18 +9,11 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import com.example.ilyes.jobi.R;
-import com.example.ilyes.jobi.database.WorkerDataSource;
-import com.example.ilyes.jobi.model.Worker;
-import com.example.ilyes.jobi.other.Util;
-
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -38,45 +31,6 @@ public class MainActivity extends AppCompatActivity
 
         // Setup the Navigation Drawer
         setupNavigation(toolbar);
-
-//
-//        ClientDataSource dataSource = new ClientDataSource(this);
-//        dataSource.open();
-//
-//        // insert data
-//        Client client = new ClientBuilder()
-//                .setName("toto")
-//                .setEmail("email@hotmail.com")
-//                .setNumeroTel("123456789")
-//                .setAddress(new Address("algeria", "oran", "gdyel"))
-//                .setPassword("12345689")
-//                .build();
-//
-//
-//        dataSource.insert(client);
-//
-//        List<Client> clients = dataSource.getAll();
-//
-//        for (Client w : clients) {
-//            Log.v(Util.LOG_TAG, w.toString());
-//        }
-//        dataSource.close();
-//
-//
-        WorkerDataSource dataSource = new WorkerDataSource(this);
-        dataSource.open();
-
-        List<Worker> workers = dataSource.getAll();
-        for (Worker worker : workers) {
-            Log.v(Util.LOG_TAG, worker.toString());
-        }
-
-
-        Log.v(Util.LOG_TAG, "result : " + dataSource.isUserExist("'email@hotmail.com'", "'12345689'"));
-        Toast.makeText(MainActivity.this, "" + dataSource.isUserExist("'email@hotmail.co'", "'12345689'"), Toast.LENGTH_SHORT).show();
-        dataSource.close();
-
-
     }
 
     private void setupNavigation(Toolbar toolbar) {

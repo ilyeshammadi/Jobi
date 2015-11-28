@@ -40,7 +40,7 @@ abstract public class UserDataSource {
                 " AND " + WorkerEntry.COLUMN_PASSWORD + "=" + password;
         Cursor cursor = database.rawQuery(query, null);
 
-        if (cursor.getCount() > 0) {
+        if (cursor.getCount() == 1) {
             cursor.close();
             return true;
         }

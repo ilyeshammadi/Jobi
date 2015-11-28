@@ -31,6 +31,43 @@ public class MainActivity extends AppCompatActivity
 
         // Setup the Navigation Drawer
         setupNavigation(toolbar);
+
+//
+//        ClientDataSource dataSource = new ClientDataSource(this);
+//        dataSource.open();
+//
+//        // insert data
+//        Client client = new ClientBuilder()
+//                .setName("toto")
+//                .setEmail("email@hotmail.com")
+//                .setNumeroTel("123456789")
+//                .setAddress(new Address("algeria", "oran", "gdyel"))
+//                .setPassword("12345689")
+//                .build();
+//
+//
+//        dataSource.insert(client);
+//
+//        List<Client> clients = dataSource.getAll();
+//
+//        for (Client w : clients) {
+//            Log.v(Util.LOG_TAG, w.toString());
+//        }
+//        dataSource.close();
+//
+//
+//        WorkerDataSource dataSource = new WorkerDataSource(this);
+//        dataSource.open();
+//
+//        Worker worker = dataSource.get(1);
+//
+//        Log.v(Util.LOG_TAG, "Before update : " + worker.toString());
+//
+//        worker.setName("Batman");
+//        Log.v(Util.LOG_TAG, "After update : " + worker.toString());
+//        dataSource.close();
+
+
     }
 
     private void setupNavigation(Toolbar toolbar) {

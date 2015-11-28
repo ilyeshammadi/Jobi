@@ -117,4 +117,9 @@ public class ClientDataSource extends UserDataSource{
 
         Log.v(Util.LOG_TAG, "update reuslt : " + result);
     }
+
+    public void delete(long id) {
+        int result = database.delete(ClientEntry.TABLE, ClientEntry._ID + " = " + id, null);
+        Log.v(Util.LOG_TAG, "delete with " + result);
+    }
 }

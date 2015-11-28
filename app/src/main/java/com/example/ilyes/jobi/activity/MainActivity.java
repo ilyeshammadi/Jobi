@@ -32,6 +32,18 @@ public class MainActivity extends AppCompatActivity
         // Setup the Navigation Drawer
         setupNavigation(toolbar);
 
+//
+//        ClientDataSource dataSource = new ClientDataSource(this);
+//        dataSource.open();
+//
+//        // get the data from the database
+//        Client client = dataSource.get(2);
+//
+//        Log.v(Util.LOG_TAG, client.toString());
+//
+//        dataSource.close();
+
+
     }
 
     private void setupNavigation(Toolbar toolbar) {

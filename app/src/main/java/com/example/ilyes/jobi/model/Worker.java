@@ -11,6 +11,9 @@ public class Worker extends User {
     private DateTime birthDate;
     private String function;
 
+    public Worker() {
+
+    }
 
     public Worker(long id, String name, String email, String password, String numeroTel, Address address, int expYears, DateTime birthDate, String function) {
         super(id, name, email, password, numeroTel, address);
@@ -47,12 +50,25 @@ public class Worker extends User {
         birthDate = new DateTime(year, mount, day, 0, 0, 0);
     }
 
+
+
+
     public String getFunction() {
         return function;
     }
 
     public void setFunction(String function) {
         this.function = function;
+    }
+
+
+    @Override
+    public String toString() {
+        return super.toString() +
+                "expYears=" + expYears +
+                ", birthDate=" + birthDate +
+                ", function='" + function + '\'' +
+                '}';
     }
 }
 

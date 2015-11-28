@@ -12,6 +12,10 @@ public class User {
     private String numeroTel;
     private Address address;
 
+    public User() {
+
+    }
+
     public User(long id, String name, String email, String password, String numeroTel, Address address) {
         this.id = id;
         this.name = name;
@@ -64,8 +68,27 @@ public class User {
     public Address getAddress() {
         return address;
     }
-
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public void setAddressFromString(String address) {
+        String[] data = address.split("-");
+        String street = data[0];
+        String city = data[1];
+        String country = data[2];
+        this.address = new Address(country, city, street);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", numeroTel='" + numeroTel + '\'' +
+                ", address=" + address +
+                '}';
     }
 }

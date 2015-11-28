@@ -3,6 +3,7 @@ package com.example.ilyes.jobi.database;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.example.ilyes.jobi.model.Client;
@@ -32,6 +33,15 @@ public class ClientDataSource extends UserDataSource{
 
     public void insert(Client client) {
 
+        ContentValues values = getContentValues(client);
+        long id = database.insert(ClientEntry.TABLE, null, values);
+        client.setId(id);
+
+        Log.v(Util.LOG_TAG, "row id : " + id);
+    }
+
+    @NonNull
+    private ContentValues getContentValues(Client client) {
         ContentValues values = new ContentValues();
 
         values.put(ClientEntry.COLUMN_NAME, client.getName());
@@ -39,10 +49,7 @@ public class ClientDataSource extends UserDataSource{
         values.put(ClientEntry.COLUMN_PASSWORD, client.getPassword());
         values.put(ClientEntry.COLUMN_NUMERO_TEL, client.getNumeroTel());
         values.put(ClientEntry.COLUMN_ADDRESS, client.getAddress().getAddressAsString());
-        long id = database.insert(ClientEntry.TABLE, null, values);
-        client.setId(id);
-
-        Log.v(Util.LOG_TAG, "row id : " + id);
+        return values;
     }
 
 
@@ -102,4 +109,12 @@ public class ClientDataSource extends UserDataSource{
         return clients;
     }
 
+    public void update(Client client) {
+
+        ContentValues values = getContentValues(client);
+
+        int result = database.update(ClientEntry.TABLE, values, ClientEntry._ID + " = " + client.getId(), null);
+
+        Log.v(Util.LOG_TAG, "update reuslt : " + result);
+    }
 }

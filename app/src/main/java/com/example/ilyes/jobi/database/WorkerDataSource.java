@@ -3,6 +3,7 @@ package com.example.ilyes.jobi.database;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.example.ilyes.jobi.model.Worker;
@@ -35,6 +36,16 @@ public class WorkerDataSource extends UserDataSource {
 
     public void insert(Worker worker) {
 
+        ContentValues values = getContentValues(worker);
+
+        long id = database.insert(WorkerEntry.TABLE, null, values);
+        worker.setId(id);
+
+        Log.v(Util.LOG_TAG, "row id : " + id);
+    }
+
+    @NonNull
+    private ContentValues getContentValues(Worker worker) {
         ContentValues values = new ContentValues();
 
         values.put(WorkerEntry.COLUMN_NAME, worker.getName());
@@ -45,10 +56,7 @@ public class WorkerDataSource extends UserDataSource {
         values.put(WorkerEntry.COLUMN_EXP_YEAR, worker.getExpYears());
         values.put(WorkerEntry.COLUMN_BIRTH_DATE, worker.getBirthDateAsString());
         values.put(WorkerEntry.COLUMN_FUNCTION, worker.getFunction());
-        long id = database.insert(WorkerEntry.TABLE, null, values);
-        worker.setId(id);
-
-        Log.v(Util.LOG_TAG, "row id : " + id);
+        return values;
     }
 
     public Worker get(long id) {
@@ -118,4 +126,12 @@ public class WorkerDataSource extends UserDataSource {
         return workers;
     }
 
+    public void update(Worker worker) {
+
+        ContentValues values = getContentValues(worker);
+
+        int result = database.update(WorkerEntry.TABLE, values, WorkerEntry._ID + " = " + worker.getId(), null);
+
+        Log.v(Util.LOG_TAG, "update reuslt : " + result);
+    }
 }

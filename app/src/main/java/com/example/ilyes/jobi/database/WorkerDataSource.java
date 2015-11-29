@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.support.annotation.NonNull;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.ilyes.jobi.model.Worker;
 import com.example.ilyes.jobi.other.Util;
@@ -140,7 +141,6 @@ public class WorkerDataSource extends UserDataSource {
         int result = database.delete(WorkerEntry.TABLE, WorkerEntry._ID + " = " + id, null);
         Log.v(Util.LOG_TAG, "delete with " + result);
     }
-
 
 
 

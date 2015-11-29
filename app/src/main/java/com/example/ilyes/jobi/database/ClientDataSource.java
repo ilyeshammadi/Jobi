@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * Created by ilyes on 28/11/15.
  */
-public class ClientDataSource extends UserDataSource{
+public class ClientDataSource extends UserDataSource {
 
     private String[] allColumns = {
             ClientEntry._ID,
@@ -86,7 +86,6 @@ public class ClientDataSource extends UserDataSource{
         List<Client> clients = new ArrayList<>();
 
 
-
         Cursor cursor = database.query(ClientEntry.TABLE, allColumns, null, null, null, null, null);
 
 
@@ -122,5 +121,7 @@ public class ClientDataSource extends UserDataSource{
         int result = database.delete(ClientEntry.TABLE, ClientEntry._ID + " = " + id, null);
         Log.v(Util.LOG_TAG, "delete with " + result);
     }
+
+
 
 }

@@ -52,7 +52,6 @@ public class ClientDataSource extends UserDataSource {
         return values;
     }
 
-
     public Client read(long id) {
         Client client = new Client();
 
@@ -80,7 +79,6 @@ public class ClientDataSource extends UserDataSource {
 
         return client;
     }
-
 
     public List<Client> readAll() {
         List<Client> clients = new ArrayList<>();

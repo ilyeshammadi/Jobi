@@ -1,5 +1,6 @@
 package com.example.ilyes.jobi.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -14,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.example.ilyes.jobi.R;
+import com.example.ilyes.jobi.database.UserDataSource;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -32,6 +34,17 @@ public class MainActivity extends AppCompatActivity
 
         // Setup the Navigation Drawer
         setupNavigation(toolbar);
+
+
+        // Testing the isUserRegirsted method
+        UserDataSource dataSource = new UserDataSource(this);
+        dataSource.open();
+
+        dataSource.isUserRegistred("toto@toto.com");
+        dataSource.close();
+
+
+
     }
 
     private void setupNavigation(Toolbar toolbar) {
@@ -89,6 +102,8 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            startActivity(new Intent(MainActivity.this, SignActivity.class));
+            finish();
             return true;
         }
 

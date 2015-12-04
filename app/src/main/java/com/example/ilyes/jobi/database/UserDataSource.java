@@ -59,7 +59,6 @@ public class UserDataSource {
         return false;
     }
 
-
     public boolean isClientExist(String email, String password) {
         email = "'" + email + "'";
         password = "'" + password + "'";
@@ -79,8 +78,26 @@ public class UserDataSource {
         cursor.close();
         return false;
     }
+    
+    public boolean isUserRegistred(String email) {
+        email = "'" + email + "'";
 
+        String query = "SELECT * FROM " + ClientEntry.TABLE + " " + WorkerEntry.TABLE +
+                " WHERE " + UserEntry.COLUMN_EMAIL + "=" + email;
 
+        Cursor cursor = database.rawQuery(query, null);
+
+        if (cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            int id = cursor.getInt(cursor.getColumnIndex(UserEntry._ID));
+            Toast.makeText(context, "Client : " + id, Toast.LENGTH_SHORT).show();
+            cursor.close();
+            return true;
+        }
+
+        cursor.close();
+        return false;
+    }
 
 
     public long getWorkerId(String email, String password) {

@@ -13,9 +13,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.ilyes.jobi.R;
-import com.example.ilyes.jobi.database.UserDataSource;
+import com.example.ilyes.jobi.other.Util;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -26,24 +27,19 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
 
-        Toolbar toolbar = setupToolBar();
+        // Get the intent from the SignActivity
+        Intent intent = getIntent();
+        Toast.makeText(MainActivity.this,
+                this.getLocalClassName() + intent.getStringExtra(Util.USER_TYPE_FLAG) + " id : " + intent.getStringExtra(Util.ID_FLAG),
+                Toast.LENGTH_SHORT).show();
 
+        Toolbar toolbar = setupToolBar();
 
         // Setup the Floating Action Button
         setupFAB();
 
         // Setup the Navigation Drawer
         setupNavigation(toolbar);
-
-
-        // Testing the isUserRegirsted method
-        UserDataSource dataSource = new UserDataSource(this);
-        dataSource.open();
-
-        dataSource.isUserRegistred("toto@toto.com");
-        dataSource.close();
-
-
 
     }
 
@@ -134,7 +130,6 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
 
 
 }

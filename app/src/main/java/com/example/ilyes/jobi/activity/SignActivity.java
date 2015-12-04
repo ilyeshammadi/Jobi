@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.example.ilyes.jobi.R;
 import com.example.ilyes.jobi.database.UserDataSource;
+import com.example.ilyes.jobi.other.Util;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.Email;
@@ -74,26 +75,46 @@ public class SignActivity extends AppCompatActivity implements Validator.Validat
         });
 
 
+        // Click Sign up as a Client
+        mSignUpClient.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SignActivity.this, SignUpClientActivity.class));
+            }
+        });
+
     }
 
     @Override
     public void onValidationSucceeded() {
+
         // If the validation succeeded
         // get the data from the EditText
         // and search for the user
         // in the workers and clients table
-
         String email = mEmailET.getText().toString();
         String password = mPasswordET.getText().toString();
 
         dataSource.open();
 
+        Intent intent = new Intent(SignActivity.this, MainActivity.class);
+
+
         if (dataSource.isWorkerExist(email, password)) {
-            startActivity(new Intent(SignActivity.this, MainActivity.class));
+
+            // Put in the intent the id and the type of the user
+            intent.putExtra(Util.ID_FLAG, dataSource.getWorkerId(email, password) + "");
+            intent.putExtra(Util.USER_TYPE_FLAG, "worker");
+
+            startActivity(intent);
             finish();
 
         } else if (dataSource.isClientExist(email, password)) {
-            startActivity(new Intent(SignActivity.this, MainActivity.class));
+
+            intent.putExtra(Util.ID_FLAG, dataSource.getClientId(email, password) + "");
+            intent.putExtra(Util.USER_TYPE_FLAG, "client");
+
+            startActivity(intent);
             finish();
         } else {
             // Print user does not exixst

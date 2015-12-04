@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.support.annotation.NonNull;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.example.ilyes.jobi.model.Worker;
 import com.example.ilyes.jobi.other.Util;
@@ -38,12 +37,12 @@ public class WorkerDataSource extends UserDataSource {
 
     public void create(Worker worker) {
 
-        ContentValues values = getContentValues(worker);
+            ContentValues values = getContentValues(worker);
 
-        long id = database.insert(WorkerEntry.TABLE, null, values);
-        worker.setId(id);
+            long id = database.insert(WorkerEntry.TABLE, null, values);
+            worker.setId(id);
 
-        Log.v(Util.LOG_TAG, "row id : " + id);
+            Log.v(Util.LOG_TAG, "row id : " + id);
     }
 
     @NonNull

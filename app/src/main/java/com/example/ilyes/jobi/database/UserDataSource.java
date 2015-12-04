@@ -78,25 +78,72 @@ public class UserDataSource {
         cursor.close();
         return false;
     }
-    
-    public boolean isUserRegistred(String email) {
+
+    public boolean isUserExist(String email, String password) {
         email = "'" + email + "'";
+        password = "'" + password + "'";
 
         String query = "SELECT * FROM " + ClientEntry.TABLE + " " + WorkerEntry.TABLE +
-                " WHERE " + UserEntry.COLUMN_EMAIL + "=" + email;
+                " WHERE " + UserEntry.COLUMN_EMAIL + "=" + email +
+                " AND " + UserEntry.COLUMN_PASSWORD + "=" + password;
 
         Cursor cursor = database.rawQuery(query, null);
 
-        if (cursor.getCount() > 0) {
+        if (cursor.getCount() == 1) {
             cursor.moveToFirst();
             int id = cursor.getInt(cursor.getColumnIndex(UserEntry._ID));
             Toast.makeText(context, "Client : " + id, Toast.LENGTH_SHORT).show();
             cursor.close();
             return true;
         }
+        cursor.close();
+        return false;
+    }
+
+    public boolean isWorkerRegistred(String email) {
+        email = "'" + email + "'";
+
+        String query = "SELECT * FROM " + WorkerEntry.TABLE +
+                " WHERE " + UserEntry.COLUMN_EMAIL + "=" + email;
+
+        Cursor cursor = database.rawQuery(query, null);
+
+        if (cursor.getCount() == 1) {
+            cursor.moveToFirst();
+            int id = cursor.getInt(cursor.getColumnIndex(UserEntry._ID));
+            Toast.makeText(context, "Worker registred : " + id, Toast.LENGTH_SHORT).show();
+            cursor.close();
+            return true;
+        }
 
         cursor.close();
         return false;
+    }
+
+
+    public boolean isClientRegistred(String email) {
+        email = "'" + email + "'";
+
+        String query = "SELECT * FROM " + ClientEntry.TABLE +
+                " WHERE " + UserEntry.COLUMN_EMAIL + "=" + email;
+
+        Cursor cursor = database.rawQuery(query, null);
+
+        if (cursor.getCount() == 1) {
+            cursor.moveToFirst();
+            int id = cursor.getInt(cursor.getColumnIndex(UserEntry._ID));
+            Toast.makeText(context, "Client registred : " + id, Toast.LENGTH_SHORT).show();
+            cursor.close();
+            return true;
+        }
+
+        cursor.close();
+        return false;
+    }
+
+
+    public boolean isUserRegistred(String email) {
+        return isClientRegistred(email) || isWorkerRegistred(email);
     }
 
 
@@ -126,7 +173,7 @@ public class UserDataSource {
         email = "'" + email + "'";
         password = "'" + password + "'";
 
-        String query = "SELECT * FROM " + WorkerEntry.TABLE +
+        String query = "SELECT * FROM " + ClientEntry.TABLE +
                 " WHERE " + ClientEntry.COLUMN_EMAIL + "=" + email +
                 " AND " + ClientEntry.COLUMN_PASSWORD + "=" + password;
 

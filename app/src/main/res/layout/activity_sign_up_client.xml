@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.example.ilyes.jobi.activity.SignUpWorkerActivity">
+    tools:context="com.example.ilyes.jobi.activity.SignUpClientActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -22,7 +21,7 @@
                 android:layout_height="wrap_content">
 
                 <AutoCompleteTextView
-                    android:id="@+id/name_worker_et"
+                    android:id="@+id/name_client_et"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Name"
@@ -38,7 +37,7 @@
                 android:layout_height="wrap_content">
 
                 <AutoCompleteTextView
-                    android:id="@+id/email_worker_et"
+                    android:id="@+id/email_client_et"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Email"
@@ -53,7 +52,7 @@
                 android:layout_height="wrap_content">
 
                 <AutoCompleteTextView
-                    android:id="@+id/password_worker_et"
+                    android:id="@+id/password_client_et"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Password"
@@ -68,7 +67,7 @@
                 android:layout_height="wrap_content">
 
                 <AutoCompleteTextView
-                    android:id="@+id/password_confirm_worker_et"
+                    android:id="@+id/password_confirm_client_et"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Confirm Password"
@@ -83,22 +82,7 @@
                 android:layout_height="wrap_content">
 
                 <AutoCompleteTextView
-                    android:id="@+id/birth_date_worker_et"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Birth Date"
-                    android:inputType="datetime"
-                    android:singleLine="true" />
-
-            </android.support.design.widget.TextInputLayout>
-
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <AutoCompleteTextView
-                    android:id="@+id/numero_tel_worker_et"
+                    android:id="@+id/numero_tel_client_et"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Numero Telephone"
@@ -106,24 +90,6 @@
                     android:singleLine="true" />
 
             </android.support.design.widget.TextInputLayout>
-
-
-            <!--TODO add the worker function-->
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <AutoCompleteTextView
-                    android:id="@+id/exp_year_worker_et"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Year Experience"
-                    android:inputType="numberDecimal"
-                    android:singleLine="true" />
-
-            </android.support.design.widget.TextInputLayout>
-
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -136,7 +102,7 @@
                     android:layout_height="wrap_content">
 
                     <AutoCompleteTextView
-                        android:id="@+id/street_worker_et"
+                        android:id="@+id/street_client_et"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Street"
@@ -158,7 +124,7 @@
                         android:layout_weight="1">
 
                         <AutoCompleteTextView
-                            android:id="@+id/city_worker_et"
+                            android:id="@+id/city_client_et"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="City"
@@ -173,7 +139,7 @@
                         android:layout_weight="1">
 
                         <AutoCompleteTextView
-                            android:id="@+id/country_worker_et"
+                            android:id="@+id/country_client_et"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="Country"
@@ -187,14 +153,16 @@
 
         </LinearLayout>
 
+
     </ScrollView>
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/confirm_sigup_worker_fab"
+        android:id="@+id/confirm_sigup_client_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="8dp"
         android:src="@drawable/ic_done_black_24dp" />
+
 
 </FrameLayout>

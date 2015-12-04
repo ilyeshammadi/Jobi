@@ -104,7 +104,10 @@ public class SignUpWorkerActivity extends AppCompatActivity implements Validator
             public void onClick(View v) {
                 validator.validate();
             }
+
         });
+
+
 
         // When the Birht date Edit text is touched a date picker diaolg is displayed
         // and the user can pick a date
@@ -112,7 +115,6 @@ public class SignUpWorkerActivity extends AppCompatActivity implements Validator
 
             @Override
             public void onClick(View v) {
-                // TODO Auto-generated method stub
                 //To show current date in the datepicker
                 Calendar mcurrentDate = Calendar.getInstance();
                 int year = mcurrentDate.get(Calendar.YEAR);
@@ -151,22 +153,29 @@ public class SignUpWorkerActivity extends AppCompatActivity implements Validator
                 .setPassword(mPasswordrkerET.getText().toString())
                 .setBirthDate(new DateTime(mYear, mMonth, mDay, 0, 0))
                 .setNumeroTel(mNumeroTelephoneWorkerET.getText().toString())
+                // TODO add a spinner to choice the function
+                .setFunction("Plombier")
                 .setExpYears(Integer.parseInt(mExpYearWorkerET.getText().toString()))
                 .setAddress(new Address(
                         mCountryWorkerET.getText().toString(),
                         mCityWorkerET.getText().toString(),
-                        mCountryWorkerET.getText().toString()
+                        mStreetWorkerET.getText().toString()
                 ))
                 .build();
 
         dataSource.open();
 
-        dataSource.create(worker);
+
+        if (!dataSource.isUserRegistred(worker.getEmail())) {
+            dataSource.create(worker);
+            finish();
+        } else {
+            Toast.makeText(SignUpWorkerActivity.this, "This email is already in use by another user", Toast.LENGTH_SHORT).show();
+        }
 
         dataSource.close();
 
-        Toast.makeText(this, "Yay! we got it right!", Toast.LENGTH_SHORT).show();
-        finish();
+
     }
 
     @Override

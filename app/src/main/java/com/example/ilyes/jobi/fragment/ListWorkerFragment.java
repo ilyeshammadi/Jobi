@@ -34,6 +34,7 @@ public class ListWorkerFragment extends Fragment {
     public ListWorkerFragment() {
         // Required empty public constructor
         dummyData();
+        // TODO: 05/12/15 get the data from the database in the MainActivity and pase it to this fragment
     }
 
 

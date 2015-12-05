@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 
 import com.example.ilyes.jobi.R;
 import com.example.ilyes.jobi.adapter.WorkerAdapter;
-import com.example.ilyes.jobi.database.WorkerDataSource;
 import com.example.ilyes.jobi.model.Address;
 import com.example.ilyes.jobi.model.Worker;
 import com.example.ilyes.jobi.pattern.WorkerBuilder;
@@ -30,11 +29,17 @@ public class ListWorkerFragment extends Fragment {
     private View mRoot;
     private RecyclerView mWorkerListRV;
     private List<Worker> workers = new ArrayList<>();
-    private WorkerDataSource dataSource;
+
     public ListWorkerFragment() {
+
+    }
+
+    public ListWorkerFragment(List<Worker> workers) {
         // Required empty public constructor
         dummyData();
         // TODO: 05/12/15 get the data from the database in the MainActivity and pase it to this fragment
+
+        this.workers = workers;
     }
 
 

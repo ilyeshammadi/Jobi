@@ -16,7 +16,6 @@
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-
         <activity android:name=".activity.SignActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,19 +23,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".activity.SignUpWorkerActivity"
-            android:parentActivityName=".activity.SignActivity">
-
-        </activity>
-
-
+            android:parentActivityName=".activity.SignActivity"></activity>
         <activity
             android:name=".activity.SignUpClientActivity"
-            android:parentActivityName=".activity.SignActivity">
-
-        </activity>
+            android:parentActivityName=".activity.SignActivity"></activity>
     </application>
 
 </manifest>

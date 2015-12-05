@@ -1,9 +1,12 @@
 package com.example.ilyes.jobi.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by ilyes on 28/11/15.
  */
-public class User {
+public class User implements Parcelable {
 
     private long id;
     private String name;
@@ -68,6 +71,7 @@ public class User {
     public Address getAddress() {
         return address;
     }
+
     public void setAddress(Address address) {
         this.address = address;
     }
@@ -91,4 +95,29 @@ public class User {
                 ", address=" + address +
                 '}';
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeLong(this.id);
+        dest.writeString(this.name);
+        dest.writeString(this.email);
+        dest.writeString(this.password);
+        dest.writeString(this.numeroTel);
+        dest.writeParcelable(this.address, 0);
+    }
+
+    protected User(Parcel in) {
+        this.id = in.readLong();
+        this.name = in.readString();
+        this.email = in.readString();
+        this.password = in.readString();
+        this.numeroTel = in.readString();
+        this.address = in.readParcelable(Address.class.getClassLoader());
+    }
+
 }

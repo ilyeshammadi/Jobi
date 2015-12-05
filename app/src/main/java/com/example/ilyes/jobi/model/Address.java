@@ -1,9 +1,12 @@
 package com.example.ilyes.jobi.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by ilyes on 28/11/15.
  */
-public class Address {
+public class Address implements Parcelable {
     private String country;
     private String city;
     private String street;
@@ -58,4 +61,32 @@ public class Address {
                 ", street='" + street + '\'' +
                 '}';
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.country);
+        dest.writeString(this.city);
+        dest.writeString(this.street);
+    }
+
+    protected Address(Parcel in) {
+        this.country = in.readString();
+        this.city = in.readString();
+        this.street = in.readString();
+    }
+
+    public static final Parcelable.Creator<Address> CREATOR = new Parcelable.Creator<Address>() {
+        public Address createFromParcel(Parcel source) {
+            return new Address(source);
+        }
+
+        public Address[] newArray(int size) {
+            return new Address[size];
+        }
+    };
 }

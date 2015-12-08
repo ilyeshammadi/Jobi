@@ -24,6 +24,7 @@ import com.example.ilyes.jobi.models.Client;
 import com.example.ilyes.jobi.models.User;
 import com.example.ilyes.jobi.models.Worker;
 import com.example.ilyes.jobi.others.Util;
+import com.gc.materialdesign.widgets.Dialog;
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
@@ -226,8 +227,20 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            startActivity(new Intent(MainActivity.this, SignActivity.class));
-            finish();
+
+
+            // Print a box when the user click on Sign out
+            Dialog dialog = new Dialog(this, "Sign out", "Do you realy want to sign out ?");
+            dialog.addCancelButton("Cancel");
+
+            dialog.setOnAcceptButtonClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(MainActivity.this, SignActivity.class));
+                    finish();
+                }
+            });
+            dialog.show();
             return true;
         }
 

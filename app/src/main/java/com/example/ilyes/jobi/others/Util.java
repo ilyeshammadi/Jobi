@@ -1,4 +1,4 @@
-package com.example.ilyes.jobi.other;
+package com.example.ilyes.jobi.others;
 
 import org.joda.time.DateTime;
 

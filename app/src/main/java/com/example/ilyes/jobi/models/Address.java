@@ -1,4 +1,4 @@
-package com.example.ilyes.jobi.model;
+package com.example.ilyes.jobi.models;
 
 import android.os.Parcel;
 import android.os.Parcelable;

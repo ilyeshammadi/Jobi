@@ -9,14 +9,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activity.MainActivity"
+            android:name=".activities.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.SignActivity">
+        <activity android:name=".activities.SignActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,11 +24,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.SignUpWorkerActivity"
-            android:parentActivityName=".activity.SignActivity"></activity>
+            android:name=".activities.SignUpWorkerActivity"
+            android:parentActivityName=".activities.SignActivity"/>
         <activity
-            android:name=".activity.SignUpClientActivity"
-            android:parentActivityName=".activity.SignActivity"></activity>
+            android:name=".activities.SignUpClientActivity"
+            android:parentActivityName=".activities.SignActivity"/>
     </application>
 
 </manifest>

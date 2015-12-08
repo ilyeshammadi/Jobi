@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.ilyes.jobi.activity.SignUpWorkerActivity">
+    tools:context="com.example.ilyes.jobi.activities.SignUpWorkerActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -124,6 +124,11 @@
 
             </android.support.design.widget.TextInputLayout>
 
+
+            <Spinner
+                android:id="@+id/function_worker_spr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
             <LinearLayout
                 android:layout_width="match_parent"

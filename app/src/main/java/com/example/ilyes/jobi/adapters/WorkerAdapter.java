@@ -1,4 +1,4 @@
-package com.example.ilyes.jobi.adapter;
+package com.example.ilyes.jobi.adapters;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,8 +7,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.ilyes.jobi.R;
-import com.example.ilyes.jobi.model.Worker;
-import com.example.ilyes.jobi.other.Util;
+import com.example.ilyes.jobi.models.Worker;
+import com.example.ilyes.jobi.others.Util;
 
 import java.util.List;
 

@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.ilyes.jobi.activity.SignActivity">
+    tools:context="com.example.ilyes.jobi.activities.SignActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -1,4 +1,4 @@
-package com.example.ilyes.jobi.model;
+package com.example.ilyes.jobi.models;
 
 import android.os.Parcel;
 
@@ -12,6 +12,13 @@ public class Worker extends User {
     private int expYears;
     private DateTime birthDate;
     private String function;
+
+    private static String[] workerFuntions = new String[]{
+            "Plombier",
+            "Electricien",
+            "Mechanicien",
+            "Informaticien"
+    };
 
     public Worker() {
 
@@ -63,6 +70,9 @@ public class Worker extends User {
         this.function = function;
     }
 
+    public static String[] getWorkerFunctions() {
+        return workerFuntions;
+    }
 
     @Override
     public String toString() {

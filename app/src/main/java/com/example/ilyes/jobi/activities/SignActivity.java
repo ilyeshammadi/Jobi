@@ -1,4 +1,4 @@
-package com.example.ilyes.jobi.activity;
+package com.example.ilyes.jobi.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import com.example.ilyes.jobi.R;
 import com.example.ilyes.jobi.database.UserDataSource;
-import com.example.ilyes.jobi.other.Util;
+import com.example.ilyes.jobi.others.Util;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.Email;

@@ -1,4 +1,4 @@
-package com.example.ilyes.jobi.fragment;
+package com.example.ilyes.jobi.fragments;
 
 
 import android.os.Bundle;
@@ -10,10 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.ilyes.jobi.R;
-import com.example.ilyes.jobi.adapter.WorkerAdapter;
-import com.example.ilyes.jobi.model.Address;
-import com.example.ilyes.jobi.model.Worker;
-import com.example.ilyes.jobi.pattern.WorkerBuilder;
+import com.example.ilyes.jobi.adapters.WorkerAdapter;
+import com.example.ilyes.jobi.models.Address;
+import com.example.ilyes.jobi.models.Worker;
+import com.example.ilyes.jobi.patterns.WorkerBuilder;
 
 import org.joda.time.DateTime;
 

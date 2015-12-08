@@ -1,20 +1,22 @@
-package com.example.ilyes.jobi.activity;
+package com.example.ilyes.jobi.activities;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.ilyes.jobi.R;
 import com.example.ilyes.jobi.database.WorkerDataSource;
-import com.example.ilyes.jobi.model.Address;
-import com.example.ilyes.jobi.model.Worker;
-import com.example.ilyes.jobi.pattern.WorkerBuilder;
+import com.example.ilyes.jobi.models.Address;
+import com.example.ilyes.jobi.models.Worker;
+import com.example.ilyes.jobi.patterns.WorkerBuilder;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.ConfirmPassword;
@@ -65,11 +67,15 @@ public class SignUpWorkerActivity extends AppCompatActivity implements Validator
     @Length(max = 10)
     AutoCompleteTextView mCountryWorkerET;
 
+    Spinner mFunctionWorkerSpn;
+
     FloatingActionButton mConfirmFab;
 
     Validator validator;
 
     WorkerDataSource dataSource;
+
+
 
     private int mYear;
     private int mMonth;
@@ -91,6 +97,12 @@ public class SignUpWorkerActivity extends AppCompatActivity implements Validator
         mStreetWorkerET = (AutoCompleteTextView) findViewById(R.id.street_worker_et);
         mCityWorkerET = (AutoCompleteTextView) findViewById(R.id.city_worker_et);
         mCountryWorkerET = (AutoCompleteTextView) findViewById(R.id.country_worker_et);
+        mFunctionWorkerSpn = (Spinner) findViewById(R.id.function_worker_spr);
+
+
+
+        mFunctionWorkerSpn.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, Worker.getWorkerFunctions()));
+
 
         mConfirmFab = (FloatingActionButton) findViewById(R.id.confirm_sigup_worker_fab);
         validator = new Validator(this);

@@ -1,4 +1,4 @@
-package com.example.ilyes.jobi.activity;
+package com.example.ilyes.jobi.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,12 +18,23 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.ilyes.jobi.R;
-import com.example.ilyes.jobi.adapter.SectionsPagerAdapter;
+import com.example.ilyes.jobi.adapters.SectionsPagerAdapter;
 import com.example.ilyes.jobi.database.ClientDataSource;
 import com.example.ilyes.jobi.database.WorkerDataSource;
-import com.example.ilyes.jobi.model.Client;
-import com.example.ilyes.jobi.model.Worker;
-import com.example.ilyes.jobi.other.Util;
+import com.example.ilyes.jobi.models.Client;
+import com.example.ilyes.jobi.models.User;
+import com.example.ilyes.jobi.models.Worker;
+import com.example.ilyes.jobi.others.Util;
+import com.mikepenz.materialdrawer.AccountHeader;
+import com.mikepenz.materialdrawer.AccountHeaderBuilder;
+import com.mikepenz.materialdrawer.Drawer;
+import com.mikepenz.materialdrawer.DrawerBuilder;
+import com.mikepenz.materialdrawer.model.DividerDrawerItem;
+import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
+import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
+import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
+import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
+import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +44,9 @@ public class MainActivity extends AppCompatActivity
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
+    private Toolbar mToolbar;
+    private User actualUser;
+    private TabLayout mTabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +63,7 @@ public class MainActivity extends AppCompatActivity
         int userId = Integer.parseInt(intent.getStringExtra(Util.ID_FLAG));
         String userType = intent.getStringExtra(Util.USER_TYPE_FLAG);
 
-        Toolbar toolbar = setupToolBar();
+        mToolbar = setupToolBar();
 
 
         WorkerDataSource workerDataSource = new WorkerDataSource(this);
@@ -73,9 +87,11 @@ public class MainActivity extends AppCompatActivity
         // Remove the actual user from the array
         switch (userType) {
             case "worker":
+                actualUser = workers.get(userId - 1);
                 workers.remove(userId - 1);
                 break;
             case "client":
+                actualUser = clients.get(userId - 1);
                 clients.remove(userId - 1);
                 break;
             default:
@@ -92,14 +108,81 @@ public class MainActivity extends AppCompatActivity
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(mViewPager);
+        mTabLayout = (TabLayout) findViewById(R.id.tabs);
+        mTabLayout.setupWithViewPager(mViewPager);
 
         // Setup the Floating Action Button
         setupFAB();
 
-        // Setup the Navigation Drawer
-        setupNavigation(toolbar);
+//        // Setup the Navigation Drawer
+//        setupNavigation(mToolbar);
+
+        testingTheNewNavigationDrawer();
+    }
+
+    private void testingTheNewNavigationDrawer() {
+
+        // Create the AccountHeader
+        AccountHeader headerResult = new AccountHeaderBuilder()
+                .withActivity(this)
+                .withHeaderBackground(R.drawable.side_nav_bar)
+                .addProfiles(
+                        new ProfileDrawerItem()
+                                .withName(actualUser.getName())
+                                .withEmail(actualUser.getEmail())
+                                .withIcon(getResources()
+                                        .getDrawable(android.R.drawable.sym_def_app_icon))
+                )
+                .withOnAccountHeaderListener(new AccountHeader.OnAccountHeaderListener() {
+                    @Override
+                    public boolean onProfileChanged(View view, IProfile profile, boolean currentProfile) {
+                        return false;
+                    }
+                })
+                .build();
+
+
+        //if you want to update the items at a later time it is recommended to keep it in a variable
+        PrimaryDrawerItem itemWorker = new PrimaryDrawerItem()
+                .withName(R.string.drawer_item_worker);
+
+        PrimaryDrawerItem itemClient = new PrimaryDrawerItem()
+                .withName(R.string.drawer_item_client);
+
+
+        //create the drawer and remember the `Drawer` result object
+        Drawer result = null;
+        result = new DrawerBuilder()
+                .withActivity(this)
+                .withToolbar(mToolbar)
+                .withAccountHeader(headerResult)
+                .addDrawerItems(
+                        itemWorker,
+                        itemClient,
+                        new DividerDrawerItem(),
+                        new SecondaryDrawerItem()
+                                .withName(R.string.action_settings)
+                ).build();
+
+        final Drawer finalResult = result;
+        result.setOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+            @Override
+            public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+                // do something with the clicked item :D
+                switch (position) {
+                    case 1:
+                        mViewPager.setCurrentItem(0);
+                        finalResult.closeDrawer();
+                        return true;
+                    case 2:
+                        mViewPager.setCurrentItem(1);
+                        finalResult.closeDrawer();
+                        return true;
+                }
+                return false;
+            }
+        });
+
     }
 
     private void setupNavigation(Toolbar toolbar) {
@@ -126,7 +209,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private Toolbar setupToolBar() {
-        // Setup the toolbar
+        // Setup the mToolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         return toolbar;

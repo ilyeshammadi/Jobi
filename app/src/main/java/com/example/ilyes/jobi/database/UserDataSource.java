@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.example.ilyes.jobi.other.Util;
+import com.example.ilyes.jobi.others.Util;
 
 /**
  * Created by ilyes on 28/11/15.

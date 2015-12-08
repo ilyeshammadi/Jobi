@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import com.example.ilyes.jobi.other.Util;
+import com.example.ilyes.jobi.others.Util;
 
 /**
  * Created by ilyes on 28/11/15.

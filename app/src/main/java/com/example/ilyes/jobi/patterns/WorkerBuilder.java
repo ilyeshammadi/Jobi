@@ -1,7 +1,7 @@
-package com.example.ilyes.jobi.pattern;
+package com.example.ilyes.jobi.patterns;
 
-import com.example.ilyes.jobi.model.Address;
-import com.example.ilyes.jobi.model.Worker;
+import com.example.ilyes.jobi.models.Address;
+import com.example.ilyes.jobi.models.Worker;
 
 import org.joda.time.DateTime;
 

@@ -1,4 +1,4 @@
-package com.example.ilyes.jobi.fragment;
+package com.example.ilyes.jobi.fragments;
 
 
 import android.os.Bundle;

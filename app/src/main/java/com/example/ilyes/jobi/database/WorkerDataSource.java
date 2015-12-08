@@ -6,8 +6,8 @@ import android.database.Cursor;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import com.example.ilyes.jobi.model.Worker;
-import com.example.ilyes.jobi.other.Util;
+import com.example.ilyes.jobi.models.Worker;
+import com.example.ilyes.jobi.others.Util;
 
 import java.util.ArrayList;
 import java.util.List;

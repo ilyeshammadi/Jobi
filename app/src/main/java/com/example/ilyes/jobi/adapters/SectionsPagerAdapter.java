@@ -1,13 +1,13 @@
-package com.example.ilyes.jobi.adapter;
+package com.example.ilyes.jobi.adapters;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.example.ilyes.jobi.fragment.ListClientsFragment;
-import com.example.ilyes.jobi.fragment.ListWorkerFragment;
-import com.example.ilyes.jobi.model.Client;
-import com.example.ilyes.jobi.model.Worker;
+import com.example.ilyes.jobi.fragments.ListClientsFragment;
+import com.example.ilyes.jobi.fragments.ListWorkerFragment;
+import com.example.ilyes.jobi.models.Client;
+import com.example.ilyes.jobi.models.Worker;
 
 import java.util.List;
 

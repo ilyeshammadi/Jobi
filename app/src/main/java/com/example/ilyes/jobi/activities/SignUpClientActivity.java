@@ -1,4 +1,4 @@
-package com.example.ilyes.jobi.activity;
+package com.example.ilyes.jobi.activities;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -10,9 +10,9 @@ import android.widget.Toast;
 
 import com.example.ilyes.jobi.R;
 import com.example.ilyes.jobi.database.ClientDataSource;
-import com.example.ilyes.jobi.model.Address;
-import com.example.ilyes.jobi.model.Client;
-import com.example.ilyes.jobi.pattern.ClientBuilder;
+import com.example.ilyes.jobi.models.Address;
+import com.example.ilyes.jobi.models.Client;
+import com.example.ilyes.jobi.patterns.ClientBuilder;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.ConfirmPassword;

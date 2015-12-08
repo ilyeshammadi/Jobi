@@ -4,9 +4,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.example.ilyes.jobi.fragments.ListClientsFragment;
+import com.example.ilyes.jobi.fragments.ListClientsPostsFragment;
 import com.example.ilyes.jobi.fragments.ListWorkerFragment;
-import com.example.ilyes.jobi.models.Client;
+import com.example.ilyes.jobi.models.Post;
 import com.example.ilyes.jobi.models.Worker;
 
 import java.util.List;
@@ -17,13 +17,13 @@ import java.util.List;
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     List<Worker> workers;
-    List<Client> clients;
+    List<Post> posts;
 
 
-    public SectionsPagerAdapter(FragmentManager fm, List<Worker> workers, List<Client> clients) {
+    public SectionsPagerAdapter(FragmentManager fm, List<Worker> workers, List<Post> posts) {
         super(fm);
         this.workers = workers;
-        this.clients = clients;
+        this.posts = posts;
     }
 
     @Override
@@ -34,7 +34,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
             case 0:
                 return new ListWorkerFragment(workers);
             case 1:
-                return new ListClientsFragment();
+                return new ListClientsPostsFragment(posts);
         }
         return null;
     }

@@ -22,8 +22,10 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.ilyes.jobi.R;
 import com.example.ilyes.jobi.adapters.SectionsPagerAdapter;
 import com.example.ilyes.jobi.database.ClientDataSource;
+import com.example.ilyes.jobi.database.PostDataSource;
 import com.example.ilyes.jobi.database.WorkerDataSource;
 import com.example.ilyes.jobi.models.Client;
+import com.example.ilyes.jobi.models.Post;
 import com.example.ilyes.jobi.models.User;
 import com.example.ilyes.jobi.models.Worker;
 import com.example.ilyes.jobi.others.Util;
@@ -70,10 +72,12 @@ public class MainActivity extends AppCompatActivity
 
         WorkerDataSource workerDataSource = new WorkerDataSource(this);
         ClientDataSource clientDataSource = new ClientDataSource(this);
+        PostDataSource postDataSource = new PostDataSource(this);
+
 
         List<Worker> workers = new ArrayList<>();
         List<Client> clients = new ArrayList<>();
-
+        List<Post> posts = new ArrayList<>();
 
         // Get the worker data
         workerDataSource.open();
@@ -86,6 +90,12 @@ public class MainActivity extends AppCompatActivity
         clients = clientDataSource.readAll();
         clientDataSource.close();
 
+        // Get all the posts
+        postDataSource.open();
+        posts = postDataSource.readAll();
+        postDataSource.close();
+
+
         // Remove the actual user from the array
         switch (userType) {
             case "worker":
@@ -97,14 +107,14 @@ public class MainActivity extends AppCompatActivity
                 clients.remove(userId - 1);
                 break;
             default:
-                Toast.makeText(MainActivity.this, "ERROR SYSYEM", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "ERROR SYSTEM", Toast.LENGTH_SHORT).show();
                 break;
         }
 
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), workers, clients);
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), workers, posts);
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
@@ -231,7 +241,7 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.action_settings) {
 
 
-//            // Print a box when the user click on Sign out
+            // Print a box when the user click on Sign out
             MaterialDialog dialog = new MaterialDialog.Builder(this)
                     .title("Sign out ?")
                     .positiveText("OK")
@@ -244,6 +254,7 @@ public class MainActivity extends AppCompatActivity
                         }
                     })
                     .build();
+
             dialog.show();
             return true;
         }

@@ -132,6 +132,41 @@ public class PostDataSource {
         return posts;
     }
 
+    public List<Post> readAll() {
+
+        List<Post> posts = new ArrayList<>();
+
+
+        Cursor cursor = database.query(
+                PostEntry.TABLE,
+                allColumns,
+                null,
+                null,
+                null,
+                null,
+                null
+        );
+
+
+        if (cursor.getCount() > 0) {
+            while (cursor.moveToNext()) {
+
+                Post post = new Post();
+
+                post.setId(cursor.getLong(cursor.getColumnIndex(PostEntry._ID)));
+                post.setTitle(cursor.getString(cursor.getColumnIndex(PostEntry.COLUMN_TITLE)));
+                post.setText(cursor.getString(cursor.getColumnIndex(PostEntry.COLUMN_TEXT)));
+                post.setUserOwnerId(cursor.getLong(cursor.getColumnIndex(PostEntry.COLUMN_USER_OWNER_ID)));
+
+                posts.add(post);
+            }
+        }
+
+        cursor.close();
+        return posts;
+    }
+
+
     public void update(Post post) {
         ContentValues values = getContentValues(post);
         int operationResult = database.update(PostEntry.TABLE, values, PostEntry._ID + "=" + post.getId(), null);

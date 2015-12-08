@@ -25,7 +25,7 @@
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:layout_margin="8dp"
-                    android:src="@drawable/introduction_ic_arrow_next" />
+                    android:src="@drawable/ic_face_black_24dp" />
 
                 <TextView
                     android:id="@+id/worker_name_tv"

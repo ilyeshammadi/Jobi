@@ -2,11 +2,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.ilyes.jobi.fragments.ListClientsFragment">
+    tools:context=".fragments.ListClientsPostsFragment">
 
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/list_clients_workers"
+        android:id="@+id/list_clients_posts"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center" />

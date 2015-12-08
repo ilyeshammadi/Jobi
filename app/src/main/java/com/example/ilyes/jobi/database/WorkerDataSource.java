@@ -35,15 +35,7 @@ public class WorkerDataSource extends UserDataSource {
     }
 
 
-    public void create(Worker worker) {
 
-            ContentValues values = getContentValues(worker);
-
-            long id = database.insert(WorkerEntry.TABLE, null, values);
-            worker.setId(id);
-
-            Log.v(Util.LOG_TAG, "row id : " + id);
-    }
 
     @NonNull
     private ContentValues getContentValues(Worker worker) {
@@ -58,6 +50,16 @@ public class WorkerDataSource extends UserDataSource {
         values.put(WorkerEntry.COLUMN_BIRTH_DATE, worker.getBirthDateAsString());
         values.put(WorkerEntry.COLUMN_FUNCTION, worker.getFunction());
         return values;
+    }
+
+    public void create(Worker worker) {
+
+        ContentValues values = getContentValues(worker);
+
+        long id = database.insert(WorkerEntry.TABLE, null, values);
+        worker.setId(id);
+
+        Log.v(Util.LOG_TAG, "row id : " + id);
     }
 
     public Worker read(long id) {

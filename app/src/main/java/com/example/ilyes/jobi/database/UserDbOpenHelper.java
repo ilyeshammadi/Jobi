@@ -40,6 +40,17 @@ public class UserDbOpenHelper extends SQLiteOpenHelper {
                     ");";
 
 
+    private static final String CREATE_TABLE_POST =
+            "CREATE TABLE " + PostEntry.TABLE + " (" +
+                    PostEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    PostEntry.COLUMN_TITLE + " TEXT ," +
+                    PostEntry.COLUMN_TEXT + " TEXT ," +
+                    PostEntry.COLUMN_USER_OWNER_ID + " INTEGER NOT NULL, " +
+                    " FOREIGN KEY (" + PostEntry.COLUMN_USER_OWNER_ID + ") REFERENCES " +
+                    ClientEntry.TABLE + " (" + ClientEntry._ID + ")" +
+                    "); ";
+
+
     public UserDbOpenHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -48,6 +59,8 @@ public class UserDbOpenHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_TABLE_WORKER);
         db.execSQL(CREATE_TABLE_CLIENT);
+        db.execSQL(CREATE_TABLE_POST);
+
         Log.v(Util.LOG_TAG, "create database");
     }
 
@@ -55,6 +68,7 @@ public class UserDbOpenHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + WorkerEntry.TABLE);
         db.execSQL("DROP TABLE IF EXISTS " + ClientEntry.TABLE);
+        db.execSQL("DROP TABLE IF EXISTS " + PostEntry.TABLE);
         onCreate(db);
     }
 }

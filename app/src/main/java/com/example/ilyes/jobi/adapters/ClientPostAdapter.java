@@ -11,6 +11,7 @@ import com.example.ilyes.jobi.R;
 import com.example.ilyes.jobi.database.ClientDataSource;
 import com.example.ilyes.jobi.models.Client;
 import com.example.ilyes.jobi.models.Post;
+import com.gc.materialdesign.views.ButtonFlat;
 
 import java.util.List;
 
@@ -21,12 +22,13 @@ public class ClientPostAdapter extends RecyclerView.Adapter<ClientPostAdapter.My
 
     private List<Post> mData;
     private ClientDataSource dataSource;
-
+    private long acctualClientId;
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public ClientPostAdapter(Context context, List<Post> data) {
+    public ClientPostAdapter(Context context, List<Post> data, long acctualClientId) {
         this.mData = data;
         dataSource = new ClientDataSource(context);
+        this.acctualClientId = acctualClientId;
     }
 
     @Override
@@ -49,13 +51,16 @@ public class ClientPostAdapter extends RecyclerView.Adapter<ClientPostAdapter.My
 
         client = dataSource.read(post.getUserOwnerId());
 
+        dataSource.close();
 
         // Parse the data here
         holder.clientNameTV.setText(client.getName());
         holder.postTitleTV.setText(post.getTitle());
         holder.postTextTV.setText(post.getText());
 
-        dataSource.close();
+        if (client.getId() == acctualClientId) {
+            holder.contactFlatBtn.setVisibility(View.GONE);
+        }
     }
 
     // Return the size of your dataset (invoked by the layout manager)
@@ -72,6 +77,7 @@ public class ClientPostAdapter extends RecyclerView.Adapter<ClientPostAdapter.My
         TextView clientNameTV;
         TextView postTitleTV;
         TextView postTextTV;
+        ButtonFlat contactFlatBtn;
 
         public MyHolder(View itemView) {
             super(itemView);
@@ -80,6 +86,7 @@ public class ClientPostAdapter extends RecyclerView.Adapter<ClientPostAdapter.My
             clientNameTV = (TextView) itemView.findViewById(R.id.client_name_tv);
             postTitleTV = (TextView) itemView.findViewById(R.id.client_post_title_tv);
             postTextTV = (TextView) itemView.findViewById(R.id.client_post_text_tv);
+            contactFlatBtn = (ButtonFlat) itemView.findViewById(R.id.contact_client_btn);
         }
 
 

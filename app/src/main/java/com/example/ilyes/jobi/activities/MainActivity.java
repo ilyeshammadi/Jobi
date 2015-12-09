@@ -3,9 +3,7 @@ package com.example.ilyes.jobi.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
@@ -45,6 +43,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
@@ -98,11 +97,11 @@ public class MainActivity extends AppCompatActivity
 
         // Remove the actual user from the array
         switch (userType) {
-            case "worker":
+            case Util.WORKER:
                 actualUser = workers.get(userId - 1);
                 workers.remove(userId - 1);
                 break;
-            case "client":
+            case Util.CLIENT:
                 actualUser = clients.get(userId - 1);
                 clients.remove(userId - 1);
                 break;
@@ -114,7 +113,10 @@ public class MainActivity extends AppCompatActivity
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), workers, posts);
+        // pass to the adapter the user id and the user type as a flag
+        // the role of this informations here is to now how to display
+        // if it's a worker there some stufs that will be hiden
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), workers, posts, userId, userType);
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
@@ -122,9 +124,6 @@ public class MainActivity extends AppCompatActivity
 
         mTabLayout = (TabLayout) findViewById(R.id.tabs);
         mTabLayout.setupWithViewPager(mViewPager);
-
-        // Setup the Floating Action Button
-        setupFAB();
 
         // Setup the Navigation Drawer
         setupNavigationDrawer();
@@ -195,16 +194,6 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    private void setupFAB() {
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-    }
 
     private Toolbar setupToolBar() {
         // Setup the mToolbar

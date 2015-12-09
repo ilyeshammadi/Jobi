@@ -18,12 +18,16 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     List<Worker> workers;
     List<Post> posts;
+    long acctualUserId;
+    String userType;
 
 
-    public SectionsPagerAdapter(FragmentManager fm, List<Worker> workers, List<Post> posts) {
+    public SectionsPagerAdapter(FragmentManager fm, List<Worker> workers, List<Post> posts, long acctualUserId, String userType) {
         super(fm);
         this.workers = workers;
         this.posts = posts;
+        this.acctualUserId = acctualUserId;
+        this.userType = userType;
     }
 
     @Override
@@ -34,7 +38,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
             case 0:
                 return new ListWorkerFragment(workers);
             case 1:
-                return new ListClientsPostsFragment(posts);
+                return new ListClientsPostsFragment(posts, acctualUserId, userType);
         }
         return null;
     }

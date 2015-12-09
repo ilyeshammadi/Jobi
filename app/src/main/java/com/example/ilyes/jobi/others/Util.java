@@ -10,6 +10,9 @@ public class Util {
     public static final String ID_FLAG = "id";
     public static final String USER_TYPE_FLAG = "user";
 
+    public static final String WORKER = "worker";
+    public static final String CLIENT = "client";
+
 
     public static int calculateAge(DateTime userBirthDate) {
         DateTime acctualDate = DateTime.now();

@@ -53,4 +53,15 @@ public class Post {
     public void setUserOwnerId(long userOwnerId) {
         this.userOwnerId = userOwnerId;
     }
+
+
+    @Override
+    public String toString() {
+        return "Post{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", text='" + text + '\'' +
+                ", userOwnerId=" + userOwnerId +
+                '}';
+    }
 }

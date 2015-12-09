@@ -45,7 +45,9 @@
                 android:layout_height="wrap_content">
 
                 <LinearLayout
-                    android:layout_margin="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -74,7 +76,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
                     android:text="Contacter"
-                    android:layout_margin="8dp"/>
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="8dp"/>
 
             </LinearLayout>
 

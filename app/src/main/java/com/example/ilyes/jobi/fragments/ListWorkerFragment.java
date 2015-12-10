@@ -51,7 +51,7 @@ public class ListWorkerFragment extends Fragment {
 
         mWorkerListRV = (RecyclerView) mRoot.findViewById(R.id.list_workers_rv);
         mWorkerListRV.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mWorkerListRV.setAdapter(new WorkerAdapter(workers));
+        mWorkerListRV.setAdapter(new WorkerAdapter(getActivity(),workers));
         return mRoot;
     }
 

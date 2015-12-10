@@ -5,17 +5,13 @@
     android:layout_height="match_parent"
     tools:context=".fragments.ListClientsPostsFragment">
 
-    <include
-        layout="@layout/fragment_list_client_base"
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/list_clients_posts"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_width="match_parent" />
+        android:layout_gravity="center" />
 
 
-    <include
-        layout="@layout/floating_action_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="12dp"/>
 
 </FrameLayout>

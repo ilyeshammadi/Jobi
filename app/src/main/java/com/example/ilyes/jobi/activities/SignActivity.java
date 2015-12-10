@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.example.ilyes.jobi.R;
 import com.example.ilyes.jobi.database.UserDataSource;
 import com.example.ilyes.jobi.others.Util;
+import com.gc.materialdesign.views.ButtonFlat;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.Email;
@@ -30,8 +31,8 @@ public class SignActivity extends AppCompatActivity implements Validator.Validat
     EditText mPasswordET;
 
     Button mSubmitBtn;
-    Button mSignUpWorker;
-    Button mSignUpClient;
+    ButtonFlat mSignUpWorker;
+    ButtonFlat mSignUpClient;
     UserDataSource dataSource;
 
     Validator validator;
@@ -46,8 +47,8 @@ public class SignActivity extends AppCompatActivity implements Validator.Validat
         mEmailET = (EditText) findViewById(R.id.emial_et);
         mPasswordET = (EditText) findViewById(R.id.password_et);
         mSubmitBtn = (Button) findViewById(R.id.submit_btn);
-        mSignUpWorker = (Button) findViewById(R.id.signin_worker_btn);
-        mSignUpClient = (Button) findViewById(R.id.signin_client_btn);
+        mSignUpWorker = (ButtonFlat) findViewById(R.id.signin_worker_btn);
+        mSignUpClient = (ButtonFlat) findViewById(R.id.signin_client_btn);
         dataSource = new UserDataSource(this);
 
 

@@ -1,14 +1,17 @@
 package com.example.ilyes.jobi.adapters;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.ilyes.jobi.R;
 import com.example.ilyes.jobi.models.Worker;
 import com.example.ilyes.jobi.others.Util;
+import com.gc.materialdesign.views.ButtonFlat;
 
 import java.util.List;
 
@@ -18,10 +21,12 @@ import java.util.List;
 public class WorkerAdapter extends RecyclerView.Adapter<WorkerAdapter.MyHolder> {
 
     private List<Worker> mData;
+    private Context mContext;
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public WorkerAdapter(List<Worker> data) {
+    public WorkerAdapter(Context context,List<Worker> data) {
         this.mData = data;
+        mContext = context;
     }
 
     @Override
@@ -37,13 +42,33 @@ public class WorkerAdapter extends RecyclerView.Adapter<WorkerAdapter.MyHolder> 
     public void onBindViewHolder(MyHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        Worker worker = mData.get(position);
+        final Worker worker = mData.get(position);
 
         // Parse the data here
         holder.workerName.setText(worker.getName());
         int age = Util.calculateAge(worker.getBirthDate());
         holder.workerAge.setText(age + " ans");
         holder.workerFunction.setText(worker.getFunction());
+
+        // Setup the dialog box
+        final MaterialDialog dialog = new MaterialDialog.Builder(mContext)
+                .title("Contact")
+                .customView(R.layout.contact, false)
+                .build();
+
+        View conactView = dialog.getCustomView();
+
+
+        // When the user click on Contact a dialog show's up
+        // ask how to conact the with mail or with phone number
+        holder.conactWorkerFlatBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.show();
+            }
+        });
+
+
     }
 
     // Return the size of your dataset (invoked by the layout manager)
@@ -60,7 +85,7 @@ public class WorkerAdapter extends RecyclerView.Adapter<WorkerAdapter.MyHolder> 
         TextView workerName;
         TextView workerAge;
         TextView workerFunction;
-
+        ButtonFlat conactWorkerFlatBtn;
 
         public MyHolder(View itemView) {
             super(itemView);
@@ -69,6 +94,7 @@ public class WorkerAdapter extends RecyclerView.Adapter<WorkerAdapter.MyHolder> 
             workerName = (TextView) itemView.findViewById(R.id.worker_name_tv);
             workerAge = (TextView) itemView.findViewById(R.id.worker_age_tv);
             workerFunction = (TextView) itemView.findViewById(R.id.worker_function_tv);
+            conactWorkerFlatBtn = (ButtonFlat) itemView.findViewById(R.id.contac_worker_btn);
         }
 
 

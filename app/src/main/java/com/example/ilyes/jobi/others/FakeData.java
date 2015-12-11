@@ -7,6 +7,7 @@ import com.example.ilyes.jobi.database.PostDataSource;
 import com.example.ilyes.jobi.database.WorkerDataSource;
 import com.example.ilyes.jobi.models.Address;
 import com.example.ilyes.jobi.models.Client;
+import com.example.ilyes.jobi.models.Post;
 import com.example.ilyes.jobi.models.Worker;
 
 import org.joda.time.DateTime;
@@ -77,6 +78,30 @@ public class FakeData {
 
         clientDataSource.close();
 
+
+        // Generate Posts
+        List<Post> posts = new ArrayList<>();
+
+        for (int i = 0; i < clients.size(); i++) {
+
+            posts.add(new Post(-1, "Lorum", "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. " +
+                    "Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, " +
+                    "nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, " +
+                    "pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel", clients.get(i).getId()));
+
+        }
+
+
+        // Insert data into the database
+        postDataSource = new PostDataSource(context);
+        postDataSource.open();
+
+        for (Post p: posts) {
+            postDataSource.create(p);
+        }
+
+
+        postDataSource.close();
 
     }
 

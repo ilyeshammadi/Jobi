@@ -96,23 +96,29 @@
             android:orientation="horizontal">
 
 
-            <com.gc.materialdesign.views.ButtonFlat
-                android:id="@+id/signin_worker_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginRight="16dp"
-                android:text="Signup as an worker"
-                android:textSize="12sp" />
+            <!--<com.gc.materialdesign.views.ButtonFlat-->
+                <!--android:id="@+id/signin_worker_btn"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:layout_marginRight="16dp"-->
+                <!--android:text="Signup as an worker"-->
+                <!--android:textSize="12sp" />-->
 
 
+            <!--<com.gc.materialdesign.views.ButtonFlat-->
+                <!--android:id="@+id/signin_client_btn"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:text="signup as a client"-->
+                <!--android:textSize="12sp" />-->
+
             <com.gc.materialdesign.views.ButtonFlat
-                android:id="@+id/signin_client_btn"
+                android:text="Don't have an account sign up"
+                android:id="@+id/sign_up_flatt_btn"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="signup as a client"
-                android:textSize="12sp" />
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
 

@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.ilyes.jobi.R;
 import com.example.ilyes.jobi.database.UserDataSource;
 import com.example.ilyes.jobi.others.FakeData;
@@ -33,6 +34,7 @@ public class SignActivity extends Activity implements Validator.ValidationListen
     EditText mPasswordET;
 
     Button mSubmitBtn;
+    ButtonFlat mSignup;
     ButtonFlat mSignUpWorker;
     ButtonFlat mSignUpClient;
     UserDataSource dataSource;
@@ -66,8 +68,7 @@ public class SignActivity extends Activity implements Validator.ValidationListen
         mEmailET = (EditText) findViewById(R.id.emial_et);
         mPasswordET = (EditText) findViewById(R.id.password_et);
         mSubmitBtn = (Button) findViewById(R.id.submit_btn);
-        mSignUpWorker = (ButtonFlat) findViewById(R.id.signin_worker_btn);
-        mSignUpClient = (ButtonFlat) findViewById(R.id.signin_client_btn);
+        mSignup = (ButtonFlat) findViewById(R.id.sign_up_flatt_btn);
         dataSource = new UserDataSource(this);
 
 
@@ -85,23 +86,53 @@ public class SignActivity extends Activity implements Validator.ValidationListen
             }
         });
 
-
-        // Click Sign up as a Worker
-        mSignUpWorker.setOnClickListener(new View.OnClickListener() {
+        // When the user click on don't have an account button
+        // display a dialog box to sign up and choice
+        // what of type of account to sign up with
+        mSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(SignActivity.this, SignUpWorkerActivity.class));
+
+                // Create and setup the dialog box
+                MaterialDialog dialog = new MaterialDialog.Builder(SignActivity.this)
+                        .title("Sign up")
+                        .customView(R.layout.signup, false)
+                        .build();
+
+                dialog.show();
+
+                View signUpView = dialog.getCustomView();
+
+                if (signUpView != null) {
+
+                    // Inflate the sig up view views
+                    mSignUpWorker = (ButtonFlat) signUpView.findViewById(R.id.signin_worker_btn);
+                    mSignUpClient = (ButtonFlat) signUpView.findViewById(R.id.signin_client_btn);
+
+                    // Click Sign up as a Worker
+                    mSignUpWorker.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            startActivity(new Intent(SignActivity.this, SignUpWorkerActivity.class));
+                        }
+                    });
+
+
+                    // Click Sign up as a Client
+                    mSignUpClient.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            startActivity(new Intent(SignActivity.this, SignUpClientActivity.class));
+                        }
+                    });
+
+
+                }
+
+
             }
         });
 
-
-        // Click Sign up as a Client
-        mSignUpClient.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(SignActivity.this, SignUpClientActivity.class));
-            }
-        });
 
     }
 

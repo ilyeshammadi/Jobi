@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.ListClientsPostsFragment">
+    tools:context=".fragments.ListClientsPostsFragment"
+    android:background="@color/list_background_color">
 
     <include
         layout="@layout/fragment_list_client_base"

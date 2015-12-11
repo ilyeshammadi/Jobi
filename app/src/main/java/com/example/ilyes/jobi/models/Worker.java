@@ -13,12 +13,16 @@ public class Worker extends User {
     private DateTime birthDate;
     private String function;
 
-    private static String[] workerFuntions = new String[]{
-            "Plombier",
-            "Electricien",
-            "Mechanicien",
-            "Informaticien"
+
+    public static final String MECHANICIEN = "Mechanicien";
+    public static final String PLOMBIER = "Plombier";
+    public static final String ELECTRICIEN = "Electricien";
+    private static String[] workerFunctions = {
+            Worker.ELECTRICIEN,
+            Worker.MECHANICIEN,
+            Worker.PLOMBIER,
     };
+
 
     public Worker() {
 
@@ -29,6 +33,10 @@ public class Worker extends User {
         this.expYears = expYears;
         this.birthDate = birthDate;
         this.function = function;
+    }
+
+    public static String[] getWorkerFunctions() {
+        return workerFunctions;
     }
 
     public int getExpYears() {
@@ -68,10 +76,6 @@ public class Worker extends User {
 
     public void setFunction(String function) {
         this.function = function;
-    }
-
-    public static String[] getWorkerFunctions() {
-        return workerFuntions;
     }
 
     @Override

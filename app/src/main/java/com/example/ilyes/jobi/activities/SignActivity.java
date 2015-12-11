@@ -1,8 +1,9 @@
 package com.example.ilyes.jobi.activities;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.ilyes.jobi.R;
 import com.example.ilyes.jobi.database.UserDataSource;
+import com.example.ilyes.jobi.others.FakeData;
 import com.example.ilyes.jobi.others.Util;
 import com.gc.materialdesign.views.ButtonFlat;
 import com.mobsandgeeks.saripaar.ValidationError;
@@ -20,7 +22,7 @@ import com.mobsandgeeks.saripaar.annotation.Password;
 
 import java.util.List;
 
-public class SignActivity extends AppCompatActivity implements Validator.ValidationListener {
+public class SignActivity extends Activity implements Validator.ValidationListener {
 
     @NotEmpty
     @Email
@@ -37,10 +39,27 @@ public class SignActivity extends AppCompatActivity implements Validator.Validat
 
     Validator validator;
 
+
+    SharedPreferences settings;
+
+    public static final String IS_APP_FIRST_RUN = "is_app_first_run";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign);
+
+
+        settings = getPreferences(MODE_PRIVATE);
+        SharedPreferences.Editor editor = settings.edit();
+
+
+        if (!settings.getBoolean(IS_APP_FIRST_RUN, false)) {
+            // Dummy data generator
+            FakeData.generate(this);
+            editor.putBoolean(IS_APP_FIRST_RUN, true);
+            editor.apply();
+        }
 
 
         // Get ref to the views

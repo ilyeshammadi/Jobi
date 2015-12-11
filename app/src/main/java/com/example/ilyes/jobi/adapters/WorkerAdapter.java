@@ -1,17 +1,24 @@
 package com.example.ilyes.jobi.adapters;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.ilyes.jobi.R;
 import com.example.ilyes.jobi.models.Worker;
 import com.example.ilyes.jobi.others.Util;
 import com.gc.materialdesign.views.ButtonFlat;
+import com.gc.materialdesign.views.ButtonIcon;
 
 import java.util.List;
 
@@ -24,7 +31,7 @@ public class WorkerAdapter extends RecyclerView.Adapter<WorkerAdapter.MyHolder> 
     private Context mContext;
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public WorkerAdapter(Context context,List<Worker> data) {
+    public WorkerAdapter(Context context, List<Worker> data) {
         this.mData = data;
         mContext = context;
     }
@@ -56,8 +63,8 @@ public class WorkerAdapter extends RecyclerView.Adapter<WorkerAdapter.MyHolder> 
                 .customView(R.layout.contact, false)
                 .build();
 
-        View conactView = dialog.getCustomView();
 
+        // TODO: 11/12/15 complete the dialog bpx that show the contact informations ----------------------------------
 
         // When the user click on Contact a dialog show's up
         // ask how to conact the with mail or with phone number
@@ -65,9 +72,52 @@ public class WorkerAdapter extends RecyclerView.Adapter<WorkerAdapter.MyHolder> 
             @Override
             public void onClick(View v) {
                 dialog.show();
+
+                View conactView = dialog.getCustomView();
+
+                if (conactView != null) {
+
+                    ButtonIcon phoneIconBtn = (ButtonIcon) conactView.findViewById(R.id.contact_phone);
+                    ButtonIcon mailIconBtn = (ButtonIcon) conactView.findViewById(R.id.contact_mail);
+
+                    // Click on conact using phone number
+                    phoneIconBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Toast.makeText(v.getContext(), "Call phone to : " + worker.getNumeroTel(), Toast.LENGTH_SHORT).show();
+                            Intent in = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + worker.getNumeroTel()));
+
+                            if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                                // TODO: Consider calling
+                                //    ActivityCompat#requestPermissions
+                                // here to request the missing permissions, and then overriding
+                                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                                //                                          int[] grantResults)
+                                // to handle the case where the user grants the permission. See the documentation
+                                // for ActivityCompat#requestPermissions for more details.
+                                return;
+                            }
+                            mContext.startActivity(in);
+                        }
+                    });
+
+                    // Click on contact using mail
+                    mailIconBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Toast.makeText(v.getContext(), "Send Mail to : " + worker.getEmail(), Toast.LENGTH_SHORT).show();
+                            Intent emailIntent = new Intent(Intent.ACTION_SEND);
+                            emailIntent.setData(Uri.parse("mailto:"));
+                            emailIntent.setType("text/plain");
+                        }
+                    });
+
+                }
+
             }
         });
 
+        // TODO: 11/12/15 ------------------------------------------------------------------------------------------
 
     }
 

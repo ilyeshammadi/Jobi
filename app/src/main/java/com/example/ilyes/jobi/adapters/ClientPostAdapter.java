@@ -11,6 +11,7 @@ import com.example.ilyes.jobi.R;
 import com.example.ilyes.jobi.database.ClientDataSource;
 import com.example.ilyes.jobi.models.Client;
 import com.example.ilyes.jobi.models.Post;
+import com.example.ilyes.jobi.others.DialogBox;
 import com.gc.materialdesign.views.ButtonFlat;
 
 import java.util.List;
@@ -23,12 +24,14 @@ public class ClientPostAdapter extends RecyclerView.Adapter<ClientPostAdapter.My
     private List<Post> mData;
     private ClientDataSource dataSource;
     private long acctualClientId;
+    private Context mContext;
 
     // Provide a suitable constructor (depends on the kind of dataset)
     public ClientPostAdapter(Context context, List<Post> data, long acctualClientId) {
         this.mData = data;
         dataSource = new ClientDataSource(context);
         this.acctualClientId = acctualClientId;
+        mContext = context;
     }
 
     @Override
@@ -60,6 +63,14 @@ public class ClientPostAdapter extends RecyclerView.Adapter<ClientPostAdapter.My
 
         if (client.getId() == acctualClientId) {
             holder.contactFlatBtn.setVisibility(View.GONE);
+        } else {
+            final Client finalClient = client;
+            holder.contactFlatBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    DialogBox.showContactDialog(mContext, finalClient);
+                }
+            });
         }
     }
 

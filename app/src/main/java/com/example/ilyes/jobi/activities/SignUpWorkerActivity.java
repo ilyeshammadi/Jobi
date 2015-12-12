@@ -30,6 +30,8 @@ import org.joda.time.DateTime;
 import java.util.Calendar;
 import java.util.List;
 
+import cat.ereza.customactivityoncrash.CustomActivityOnCrash;
+
 public class SignUpWorkerActivity extends AppCompatActivity implements Validator.ValidationListener {
 
     @NotEmpty
@@ -85,6 +87,10 @@ public class SignUpWorkerActivity extends AppCompatActivity implements Validator
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up_worker);
+
+        //Install CustomActivityOnCrash
+        CustomActivityOnCrash.install(this);
+
 
         // Get ref to the views
         mNameWorkerET = (AutoCompleteTextView) findViewById(R.id.name_worker_et);

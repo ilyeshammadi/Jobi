@@ -23,6 +23,8 @@ import com.mobsandgeeks.saripaar.annotation.Password;
 
 import java.util.List;
 
+import cat.ereza.customactivityoncrash.CustomActivityOnCrash;
+
 public class SignUpClientActivity extends AppCompatActivity implements Validator.ValidationListener {
 
     @NotEmpty
@@ -64,6 +66,8 @@ public class SignUpClientActivity extends AppCompatActivity implements Validator
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up_client);
 
+        //Install CustomActivityOnCrash
+        CustomActivityOnCrash.install(this);
 
         // Get ref to the views
         mNameClientET = (AutoCompleteTextView) findViewById(R.id.name_client_et);

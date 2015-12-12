@@ -23,6 +23,8 @@ import com.mobsandgeeks.saripaar.annotation.Password;
 
 import java.util.List;
 
+import cat.ereza.customactivityoncrash.CustomActivityOnCrash;
+
 public class SignActivity extends Activity implements Validator.ValidationListener {
 
     @NotEmpty
@@ -51,6 +53,8 @@ public class SignActivity extends Activity implements Validator.ValidationListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign);
 
+        //Install CustomActivityOnCrash
+        CustomActivityOnCrash.install(this);
 
         settings = getPreferences(MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();

@@ -48,6 +48,7 @@ dependencies {
     compile('com.github.afollestad.material-dialogs:commons:0.8.5.2@aar') {
         transitive = true
     }
+    compile 'cat.ereza:customactivityoncrash:1.4.0'
 }
 
 

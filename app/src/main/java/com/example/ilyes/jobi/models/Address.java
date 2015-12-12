@@ -45,6 +45,9 @@ public class Address implements Parcelable {
         return street + "-" + city + "-" + country;
     }
 
+    public String printAddress() {
+        return street + " " + city + " " + country;
+    }
     public void setAddressFromString(String address) {
         String[] data = address.split("-");
         street = data[0];

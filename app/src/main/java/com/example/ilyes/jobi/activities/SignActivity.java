@@ -20,7 +20,10 @@ import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.Email;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 import com.mobsandgeeks.saripaar.annotation.Password;
+import com.rubengees.introduction.IntroductionBuilder;
+import com.rubengees.introduction.entity.Slide;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import cat.ereza.customactivityoncrash.CustomActivityOnCrash;
@@ -46,10 +49,10 @@ public class SignActivity extends Activity implements Validator.ValidationListen
 
     SharedPreferences settings;
 
-    public static final String IS_APP_FIRST_RUN = "is_app_first_run";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign);
 
@@ -60,10 +63,12 @@ public class SignActivity extends Activity implements Validator.ValidationListen
         SharedPreferences.Editor editor = settings.edit();
 
 
-        if (!settings.getBoolean(IS_APP_FIRST_RUN, false)) {
+        if (!settings.getBoolean(Util.IS_APP_FIRST_RUN, false)) {
+            // Show the slides
+            new IntroductionBuilder(this).withSlides(generateSlides()).introduceMyself();
             // Dummy data generator
             FakeData.generate(this);
-            editor.putBoolean(IS_APP_FIRST_RUN, true);
+            editor.putBoolean(Util.IS_APP_FIRST_RUN, true);
             editor.apply();
         }
 
@@ -193,4 +198,39 @@ public class SignActivity extends Activity implements Validator.ValidationListen
             }
         }
     }
+
+
+    private List<Slide> generateSlides() {
+        List<Slide> result = new ArrayList<>();
+
+
+        result.add(new Slide()
+                .withTitle("Welcome to Jobi")
+                .withImage(R.drawable.jobi_logo)
+                .withColorResource(R.color.md_indigo_500));
+
+        result.add(new Slide()
+                .withTitle("Jobi with a Client")
+                .withDescription("La recherche et l'affichagee automatique des ouvrier de la régions et les mieux califier")
+                .withColorResource(R.color.md_indigo_500)
+                .withImage(R.drawable.clients));
+
+
+        result.add(new Slide()
+                .withTitle("Jobi with a Worker")
+                .withDescription("La recherche et la mise en contact de clients rapidement et efficasement")
+                .withColorResource(R.color.md_indigo_500)
+                .withImage(R.drawable.farmer)
+        );
+
+
+        result.add(new Slide()
+                .withTitle("The Goal is to make the deal")
+                .withColorResource(R.color.md_indigo_500)
+                .withImage(R.drawable.competitors)
+        );
+
+        return result;
+    }
+
 }

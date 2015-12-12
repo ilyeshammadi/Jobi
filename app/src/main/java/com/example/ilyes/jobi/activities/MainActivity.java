@@ -1,9 +1,11 @@
 package com.example.ilyes.jobi.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
@@ -52,6 +54,8 @@ public class MainActivity extends AppCompatActivity
     private Toolbar mToolbar;
     private User actualUser;
     private TabLayout mTabLayout;
+    private String userType;
+    private int userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,12 +67,15 @@ public class MainActivity extends AppCompatActivity
 
         // Get the intent from the SignActivity
         Intent intent = getIntent();
-        Toast.makeText(MainActivity.this,
-                this.getLocalClassName() + intent.getStringExtra(Util.USER_TYPE_FLAG) + " id : " + intent.getStringExtra(Util.ID_FLAG),
-                Toast.LENGTH_SHORT).show();
 
-        int userId = Integer.parseInt(intent.getStringExtra(Util.ID_FLAG));
-        String userType = intent.getStringExtra(Util.USER_TYPE_FLAG);
+        userId = 0;
+        userType = null;
+
+        if (intent != null) {
+            userId = Integer.parseInt(intent.getStringExtra(Util.ID_FLAG));
+            userType = intent.getStringExtra(Util.USER_TYPE_FLAG);
+        }
+
 
         mToolbar = setupToolBar();
 
@@ -131,9 +138,30 @@ public class MainActivity extends AppCompatActivity
 
         // Setup the Navigation Drawer
         setupNavigationDrawer();
+
+
+        // Say hi to the user
+        SharedPreferences settings = getPreferences(MODE_PRIVATE);
+
+        String snackbarMessage = "Hello " + actualUser.getName();
+
+        Snackbar.make(mTabLayout, snackbarMessage, Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show();
     }
 
+
+
+
     private void setupNavigationDrawer() {
+
+        int profileImageResource;
+
+        if (userType.equals(Util.WORKER)) {
+            profileImageResource = R.drawable.ic_face_black_24dp;
+        } else {
+            profileImageResource = R.drawable.ic_account_circle_black_24dp;
+        }
+
 
         // Create the AccountHeader
         AccountHeader headerResult = new AccountHeaderBuilder()
@@ -144,7 +172,7 @@ public class MainActivity extends AppCompatActivity
                                 .withName(actualUser.getName())
                                 .withEmail(actualUser.getEmail())
                                 .withIcon(getResources()
-                                        .getDrawable(android.R.drawable.sym_def_app_icon))
+                                        .getDrawable(profileImageResource))
                 )
                 .withOnAccountHeaderListener(new AccountHeader.OnAccountHeaderListener() {
                     @Override

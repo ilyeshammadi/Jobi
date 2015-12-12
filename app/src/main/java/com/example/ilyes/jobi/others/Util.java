@@ -13,6 +13,7 @@ public class Util {
     public static final String WORKER = "worker";
     public static final String CLIENT = "client";
 
+    public static final String IS_APP_FIRST_RUN = "is_app_first_run";
 
     public static int calculateAge(DateTime userBirthDate) {
         DateTime acctualDate = DateTime.now();

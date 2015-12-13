@@ -17,6 +17,8 @@ import com.gc.materialdesign.views.ButtonFlat;
 
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 /**
  * Created by ilyes on 24/11/15.
  */
@@ -59,6 +61,7 @@ public class WorkerAdapter extends RecyclerView.Adapter<WorkerAdapter.MyHolder> 
             }
         });
 
+        holder.workerImage.setImageResource(Util.getPictureAsResource(worker.getFunction()));
     }
 
     // Return the size of your dataset (invoked by the layout manager)
@@ -76,6 +79,8 @@ public class WorkerAdapter extends RecyclerView.Adapter<WorkerAdapter.MyHolder> 
         TextView workerAge;
         TextView workerFunction;
         ButtonFlat conactWorkerFlatBtn;
+        CircleImageView workerImage;
+
 
         public MyHolder(View itemView) {
             super(itemView);
@@ -85,7 +90,7 @@ public class WorkerAdapter extends RecyclerView.Adapter<WorkerAdapter.MyHolder> 
             workerAge = (TextView) itemView.findViewById(R.id.worker_age_tv);
             workerFunction = (TextView) itemView.findViewById(R.id.worker_function_tv);
             conactWorkerFlatBtn = (ButtonFlat) itemView.findViewById(R.id.contac_worker_btn);
-
+            workerImage = (CircleImageView) itemView.findViewById(R.id.worker_profile_image);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

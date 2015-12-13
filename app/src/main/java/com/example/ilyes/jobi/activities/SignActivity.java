@@ -5,14 +5,15 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.dd.processbutton.iml.ActionProcessButton;
 import com.example.ilyes.jobi.R;
 import com.example.ilyes.jobi.database.UserDataSource;
 import com.example.ilyes.jobi.others.FakeData;
+import com.example.ilyes.jobi.others.ProgressGenerator;
 import com.example.ilyes.jobi.others.Util;
 import com.gc.materialdesign.views.ButtonFlat;
 import com.mobsandgeeks.saripaar.ValidationError;
@@ -28,7 +29,7 @@ import java.util.List;
 
 import cat.ereza.customactivityoncrash.CustomActivityOnCrash;
 
-public class SignActivity extends Activity implements Validator.ValidationListener {
+public class SignActivity extends Activity implements Validator.ValidationListener, ProgressGenerator.OnCompleteListener {
 
     @NotEmpty
     @Email
@@ -38,7 +39,8 @@ public class SignActivity extends Activity implements Validator.ValidationListen
     @Password
     EditText mPasswordET;
 
-    Button mSubmitBtn;
+
+    ActionProcessButton mSignin;
     ButtonFlat mSignup;
     ButtonFlat mSignUpWorker;
     ButtonFlat mSignUpClient;
@@ -46,8 +48,9 @@ public class SignActivity extends Activity implements Validator.ValidationListen
 
     Validator validator;
 
-
     SharedPreferences settings;
+
+    ProgressGenerator progressGenerator;
 
 
     @Override
@@ -76,7 +79,6 @@ public class SignActivity extends Activity implements Validator.ValidationListen
         // Get ref to the views
         mEmailET = (EditText) findViewById(R.id.emial_et);
         mPasswordET = (EditText) findViewById(R.id.password_et);
-        mSubmitBtn = (Button) findViewById(R.id.submit_btn);
         mSignup = (ButtonFlat) findViewById(R.id.sign_up_flatt_btn);
         dataSource = new UserDataSource(this);
 
@@ -87,13 +89,18 @@ public class SignActivity extends Activity implements Validator.ValidationListen
 
         // When click on submit button get data from the view
         // and check if the user is a worker or a client
-        mSubmitBtn.setOnClickListener(new View.OnClickListener() {
+        mSignin = (ActionProcessButton) findViewById(R.id.btn_sign_in);
+        mSignin.setMode(ActionProcessButton.Mode.PROGRESS);
+
+        progressGenerator = new ProgressGenerator(this);
+        mSignin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Validate the input before using it
                 validator.validate();
             }
         });
+
 
         // When the user click on don't have an account button
         // display a dialog box to sign up and choice
@@ -148,40 +155,8 @@ public class SignActivity extends Activity implements Validator.ValidationListen
     @Override
     public void onValidationSucceeded() {
 
-        // If the validation succeeded
-        // get the data from the EditText
-        // and search for the user
-        // in the workers and clients table
-        String email = mEmailET.getText().toString();
-        String password = mPasswordET.getText().toString();
-
-        dataSource.open();
-
-        Intent intent = new Intent(SignActivity.this, MainActivity.class);
-
-
-        if (dataSource.isWorkerExist(email, password)) {
-
-            // Put in the intent the id and the type of the user
-            intent.putExtra(Util.ID_FLAG, dataSource.getWorkerId(email, password) + "");
-            intent.putExtra(Util.USER_TYPE_FLAG, "worker");
-
-            startActivity(intent);
-            finish();
-
-        } else if (dataSource.isClientExist(email, password)) {
-
-            intent.putExtra(Util.ID_FLAG, dataSource.getClientId(email, password) + "");
-            intent.putExtra(Util.USER_TYPE_FLAG, "client");
-
-            startActivity(intent);
-            finish();
-        } else {
-            // Print user does not exixst
-            Toast.makeText(SignActivity.this, "user does not exist", Toast.LENGTH_SHORT).show();
-        }
-
-        dataSource.close();
+        // Start the progress to make a loaging animation
+        progressGenerator.start(mSignin);
     }
 
     @Override
@@ -233,4 +208,42 @@ public class SignActivity extends Activity implements Validator.ValidationListen
         return result;
     }
 
+    @Override
+    public void onComplete() {
+
+        // If the validation succeeded
+        // get the data from the EditText
+        // and search for the user
+        // in the workers and clients table
+        String email = mEmailET.getText().toString();
+        String password = mPasswordET.getText().toString();
+
+        dataSource.open();
+
+        Intent intent = new Intent(SignActivity.this, MainActivity.class);
+
+
+        if (dataSource.isWorkerExist(email, password)) {
+
+            // Put in the intent the id and the type of the user
+            intent.putExtra(Util.ID_FLAG, dataSource.getWorkerId(email, password) + "");
+            intent.putExtra(Util.USER_TYPE_FLAG, "worker");
+
+            startActivity(intent);
+            finish();
+
+        } else if (dataSource.isClientExist(email, password)) {
+
+            intent.putExtra(Util.ID_FLAG, dataSource.getClientId(email, password) + "");
+            intent.putExtra(Util.USER_TYPE_FLAG, "client");
+
+            startActivity(intent);
+            finish();
+        } else {
+            // Print user does not exixst
+            Toast.makeText(SignActivity.this, "user does not exist", Toast.LENGTH_SHORT).show();
+        }
+
+        dataSource.close();
+    }
 }

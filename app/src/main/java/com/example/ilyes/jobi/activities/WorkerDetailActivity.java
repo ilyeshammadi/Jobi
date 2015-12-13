@@ -7,6 +7,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.ilyes.jobi.R;
@@ -36,6 +37,10 @@ public class WorkerDetailActivity extends AppCompatActivity {
 
     @InjectView(R.id.worker_function_tv)
     TextView mFunctionTV;
+
+
+    @InjectView(R.id.worker_function_iv)
+    ImageView mFunctionImage;
 
     Worker acctualWorker;
     WorkerDataSource dataSource;
@@ -85,6 +90,6 @@ public class WorkerDetailActivity extends AppCompatActivity {
         mAddressTV.setText(acctualWorker.getAddress().printAddress());
         mExpTV.setText(acctualWorker.getExpYears() + " ans");
         mFunctionTV.setText(acctualWorker.getFunction());
-
+        mFunctionImage.setImageResource(Util.getPictureAsResource(acctualWorker.getFunction()));
     }
 }

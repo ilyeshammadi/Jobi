@@ -34,15 +34,15 @@ public class FakeData {
         workers.add(new Worker(-1, "Reagan Patel", "Etiam.bibendum.fermentum@molestietellusAenean.net", "a123456", "0659990912", new Address("Guatemala", "Oromocto", "New Brunswick"), 3, new DateTime(1990, 1, 1, 0, 0), Worker.ELECTRICIEN));
         workers.add(new Worker(-1, "Kessie Davenport", "fermentum.vel.mauris@IncondimentumDonec.edu", "a123456", "0566319021", new Address("Greece", "Whitchurch", "Shropshire"), 3, new DateTime(1980, 1, 1, 0, 0), Worker.PLOMBIER));
         workers.add(new Worker(-1, "Jena Roman", "Aliquam.ornare@aliquameuaccumsan.co.uk", "a123456", "0977290865", new Address("Hong Kong", "Sabadell", "CA"), 3, new DateTime(1990, 1, 1, 0, 0), Worker.MECHANICIEN));
-        workers.add(new Worker(-1, "Quail York", "mi@utquam.net", "a123456", "04 31 33 06 91", new Address("Qatar", "Berlin", "BE"), 3, new DateTime(1970, 1, 1, 0, 0), Worker.ELECTRICIEN));
+        workers.add(new Worker(-1, "Quail York", "mi@utquam.net", "a123456", "04 31 33 06 91", new Address("Qatar", "Berlin", "BE"), 3, new DateTime(1970, 1, 1, 0, 0), Worker.MECHANICIEN));
         workers.add(new Worker(-1, "Desiree Schneider", "id@gravida.org", "a123456", "0750766491", new Address("New Caledonia", "Broken Arrow", "Oklahoma"), 3, new DateTime(1984, 1, 1, 0, 0), Worker.ELECTRICIEN));
-        workers.add(new Worker(-1, "Riley Alexander", "tincidunt@nectempus.edu", "a123456", "0320891030", new Address("Djibouti", "Logan City", "Queensland"), 3, new DateTime(1974, 1, 1, 0, 0), Worker.ELECTRICIEN));
+        workers.add(new Worker(-1, "Riley Alexander", "tincidunt@nectempus.edu", "a123456", "0320891030", new Address("Djibouti", "Logan City", "Queensland"), 3, new DateTime(1974, 1, 1, 0, 0), Worker.MACON_CHENTIER));
         workers.add(new Worker(-1, "Naomi Hogan", "felis@utpharetra.ca", "a123456", "0458767716", new Address("Wallis and Futuna", "Richmond Hill", "Ontario"), 3, new DateTime(1969, 1, 1, 0, 0), Worker.ELECTRICIEN));
-        workers.add(new Worker(-1, "Noel Buck", "ac.feugiat@dolordolor.net", "a123456", "0866119373", new Address("Austria", "Bamberg", "Bavaria"), 3, new DateTime(1990, 1, 1, 0, 0), Worker.ELECTRICIEN));
+        workers.add(new Worker(-1, "Noel Buck", "ac.feugiat@dolordolor.net", "a123456", "0866119373", new Address("Austria", "Bamberg", "Bavaria"), 3, new DateTime(1990, 1, 1, 0, 0), Worker.MACON_BATIMENT));
         workers.add(new Worker(-1, "Miloud Ben", "miloud.ben@gmail.com", "a123456", "0659940912", new Address("Algerie", "Oran", "Senia"), 3, new DateTime(1967, 1, 1, 0, 0), Worker.ELECTRICIEN));
 
         // My worker account
-        workers.add(new Worker(-1, "ilyes", "ilyes@ilyes.com", "a123456", "079989803", new Address("Algerie", "Oran", "Gdyel"), 2, new DateTime(1994, 8, 19, 0, 0), Worker.ELECTRICIEN));
+        workers.add(new Worker(-1, "ilyes", "ilyes@ilyes.com", "a123456", "079989803", new Address("Algerie", "Oran", "Gdyel"), 2, new DateTime(1994, 8, 19, 0, 0), Worker.MACON));
 
 
         // Insert the data into the database

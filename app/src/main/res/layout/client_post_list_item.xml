@@ -27,7 +27,7 @@
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:layout_margin="8dp"
-                    android:src="@drawable/ic_account_circle_black_24dp" />
+                    android:src="@drawable/client" />
 
                 <TextView
                     android:id="@+id/client_name_tv"

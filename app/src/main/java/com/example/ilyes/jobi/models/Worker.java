@@ -17,10 +17,21 @@ public class Worker extends User {
     public static final String MECHANICIEN = "Mechanicien";
     public static final String PLOMBIER = "Plombier";
     public static final String ELECTRICIEN = "Electricien";
+    public static final String MACON = "Macon";
+    public static final String MACON_CHENTIER = "Macon de chentier";
+    public static final String MACON_BATIMENT = "Macon de batiment";
+    public static final String MENUISIER = "Menuisier";
+    public static final String FORGERON = "Forgeron";
+
     private static String[] workerFunctions = {
-            Worker.ELECTRICIEN,
-            Worker.MECHANICIEN,
-            Worker.PLOMBIER,
+            ELECTRICIEN,
+            MECHANICIEN,
+            PLOMBIER,
+            MACON,
+            MACON_CHENTIER,
+            MACON_BATIMENT,
+            MENUISIER,
+            FORGERON
     };
 
 

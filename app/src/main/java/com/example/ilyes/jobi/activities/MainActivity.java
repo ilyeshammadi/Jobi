@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity
     private TabLayout mTabLayout;
     private String userType;
     private int userId;
-
+    private String workerFunction;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -110,6 +110,7 @@ public class MainActivity extends AppCompatActivity
         switch (userType) {
             case Util.WORKER:
                 actualUser = workers.get(userId - 1);
+                workerFunction = workers.get(userId - 1).getFunction();
                 workers.remove(userId - 1);
                 break;
             case Util.CLIENT:
@@ -157,9 +158,9 @@ public class MainActivity extends AppCompatActivity
         int profileImageResource;
 
         if (userType.equals(Util.WORKER)) {
-            profileImageResource = R.drawable.ic_face_black_24dp;
+            profileImageResource = Util.getPictureAsResource(workerFunction);
         } else {
-            profileImageResource = R.drawable.ic_account_circle_black_24dp;
+            profileImageResource = R.drawable.client;
         }
 
 

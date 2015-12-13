@@ -39,11 +39,7 @@
 
         <activity
             android:name=".activities.WorkerDetailActivity"
-            android:parentActivityName=".activities.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.ilyes.jobi.activities.MainActivity" />
         </activity>
 
 

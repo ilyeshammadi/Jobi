@@ -13,7 +13,9 @@ import android.widget.TextView;
 import com.example.ilyes.jobi.R;
 import com.example.ilyes.jobi.database.WorkerDataSource;
 import com.example.ilyes.jobi.models.Worker;
+import com.example.ilyes.jobi.others.DialogBox;
 import com.example.ilyes.jobi.others.Util;
+import com.gc.materialdesign.views.ButtonFlat;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -41,6 +43,10 @@ public class WorkerDetailActivity extends AppCompatActivity {
 
     @InjectView(R.id.worker_function_iv)
     ImageView mFunctionImage;
+
+    @InjectView(R.id.action_contact_worker_detail)
+    ButtonFlat mConactBtn;
+
 
     Worker acctualWorker;
     WorkerDataSource dataSource;
@@ -91,5 +97,15 @@ public class WorkerDetailActivity extends AppCompatActivity {
         mExpTV.setText(acctualWorker.getExpYears() + " ans");
         mFunctionTV.setText(acctualWorker.getFunction());
         mFunctionImage.setImageResource(Util.getPictureAsResource(acctualWorker.getFunction()));
+
+
+        // Contacter Worker
+        mConactBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogBox.showContactDialog(WorkerDetailActivity.this, acctualWorker);
+            }
+        });
+
     }
 }

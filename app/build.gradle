@@ -53,6 +53,9 @@ dependencies {
         transitive = true;
     }
     compile 'com.github.dmytrodanylyk.android-process-button:library:1.0.4'
+    compile ('com.github.saiff35:livingtabs:0.1.0') {
+        exclude module: 'design'
+    }
 }
 
 

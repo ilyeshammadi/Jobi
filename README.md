@@ -1,10 +1,12 @@
+#Jobi <img src="/doc/app_icon.png">
+
 
 <img src="/doc/jobi_user_guide_2.png"  height="640" width="360">_____
 <img src="/doc/jobi_login.png"  height="640" width="360">_____
 <img src="/doc/jobi_main.png"  height="640" width="360">
 
 
-Jobi
+Introduction
 =================================================
 
 This application is a school project designed to help clients find workers easly and demonstrate the various components of the Android Support libraries, in particular, showing how to implement Material design into your app.

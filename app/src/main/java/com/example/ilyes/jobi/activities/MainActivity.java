@@ -57,6 +57,8 @@ public class MainActivity extends AppCompatActivity
     private String userType;
     private int userId;
     private String workerFunction;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

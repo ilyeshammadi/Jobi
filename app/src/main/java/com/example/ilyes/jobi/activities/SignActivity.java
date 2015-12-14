@@ -185,15 +185,15 @@ public class SignActivity extends Activity implements Validator.ValidationListen
                 .withColorResource(R.color.md_indigo_500));
 
         result.add(new Slide()
-                .withTitle("Jobi with a Client")
-                .withDescription("La recherche et l'affichagee automatique des ouvrier de la régions et les mieux califier")
+                .withTitle("Jobi with Clients")
+                .withDescription("La recherche et l'affichage automatique des ouvriers de la régions et les mieux qualfier")
                 .withColorResource(R.color.md_indigo_500)
                 .withImage(R.drawable.clients));
 
 
         result.add(new Slide()
-                .withTitle("Jobi with a Worker")
-                .withDescription("La recherche et la mise en contact de clients rapidement et efficasement")
+                .withTitle("Jobi with Workers")
+                .withDescription("La recherche et la mise en contact de clients rapidement et efficacement")
                 .withColorResource(R.color.md_indigo_500)
                 .withImage(R.drawable.farmer)
         );

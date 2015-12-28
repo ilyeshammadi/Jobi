@@ -9,7 +9,7 @@
 Introduction
 =================================================
 
-This application is a school project designed to help clients find workers easly and demonstrate the various components of the Android Support libraries, in particular, showing how to implement Material design into your app.
+This application is a school project designed to help clients find workers easily and demonstrate the various components of the Android Support libraries, in particular, showing how to implement Material design into your app.
 
 This app intended to provide a high-level overview of many of the main controls in the Support and Design libraries:
 

@@ -1,10 +1,10 @@
 #Jobi <img src="/doc/app_icon.png">
 
-
+<center>
 <img src="/doc/jobi_user_guide_2.png"  height="640" width="360">_____
 <img src="/doc/jobi_login.png"  height="640" width="360">
 <img src="/doc/jobi_main.png"  height="640" width="360">
-
+</center>
 
 Introduction
 =================================================
